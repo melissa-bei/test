@@ -1,6 +1,4 @@
 import cv2
-import numpy as np
-from matplotlib import pyplot as plt
 
 
 # 直线拟合
@@ -15,11 +13,11 @@ def zhixian():
 
     # 显示所有轮廓
     for contour in contours:
-        if len(contour)>1:
+        if len(contour) > 1:
             for idx in range(-1, len(contour)-1):
                 x0, y0 = contour[idx][0]
                 x1, y1 = contour[idx+1][0]
-                if (x0==x1 and abs(y1-y0)>100) or (y0==y1 and abs(x1-x0)>50) :
+                if (x0 == x1 and abs(y1-y0) > 100) or (y0 == y1 and abs(x1-x0) > 50):
                     cv2.line(img, (x0, y0), (x1, y1), (0, 255, 0), 2)
     cv2.imshow("test", img)
     cv2.waitKey(0)
