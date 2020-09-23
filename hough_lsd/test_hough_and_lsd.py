@@ -114,18 +114,28 @@ def lsd_line_detection(image, is_show=False):
 
 
 if __name__ == '__main__':
-    file_path = r"C:/Users/lib/Desktop/resource/pdf/txt_pdf/F建施-001 - 设计说明及图纸目录.pdf"
-    with pdfplumber.open(file_path) as pdf:
-        page = pdf.pages[0]
-        pilimage = page.to_image(resolution=96).original.resize((page.width, page.height))
-        cv2image = cv2.cvtColor(np.asarray(pilimage), cv2.COLOR_BGR2RGB)
+    path = r"C:/Users/lib/Desktop/resource/pdf/txt_pdf"
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        from wand.image import Image
+        image_pdf = Image(filename=file_path, resolution=72)
+        image_jpeg = image_pdf.convert('jpg')
+        image_jpg = Image(image=image_jpeg).make_blob('jpeg')  # 得到二进制图像文件
+        from PIL import Image as PILImage
+        from io import BytesIO
+        img = PILImage.open(BytesIO(image_jpg))
+        img.show()
+        with pdfplumber.open(file_path) as pdf:
+            page = pdf.pages[0]
+            pilimage = page.to_image(resolution=72).original.resize((page.width, page.height))
+            cv2image = cv2.cvtColor(np.asarray(pilimage), cv2.COLOR_BGR2RGB)
 
-        # result1 = hough_line_detection(cv2image, is_show=True)
-        # result2 = hough_line_detection_possible(cv2image, is_show=True)
-        result3 = lsd_line_detection(cv2image, is_show=True)
-        # cv2.imwrite('./tmp_result/hough_line.jpg', result1)
-        # cv2.imwrite('./tmp_result/possible_hough_line.jpg', result2)
-        cv2.imwrite('./tmp_result/lsd_line.jpg', result3)
+            # result1 = hough_line_detection(cv2image, is_show=True)
+            # result2 = hough_line_detection_possible(cv2image, is_show=True)
+            result3 = lsd_line_detection(cv2image, is_show=True)
+            # cv2.imwrite('./tmp_result/hough_line.jpg', result1)
+            # cv2.imwrite('./tmp_result/possible_hough_line.jpg', result2)
+            cv2.imwrite('./tmp_result/lsd_line.jpg', result3)
 
     # #
     # DIR = r"C:/Users/lib/Desktop/resource/pdf/pic_pdf_all"  # 不能使用中文路径
