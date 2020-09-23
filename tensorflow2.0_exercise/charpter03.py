@@ -76,8 +76,10 @@ para_dict = {'w': tf.Variable(tf.random_normal([1]), name='weight'),
              'b': tf.Variable(tf.zeros([1]), name='bias')}  # 学习参数
 # 前向结构
 y = tf.multiply(para_dict['w'], input_dict['x']) + para_dict['b']
+tf.summary.histogram('predict y', y)                                                    # 记录预测结果到tf.summary，以直方图显示
 # 反向优化
 cost = tf.reduce_mean(tf.square(y - input_dict['y']))
+tf.summary.scalar('loss function', cost)                                              # 记录损失到tf.summary，以标量形式显示
 lr = 0.01
 optimizer = tf.train.GradientDescentOptimizer(lr).minimize(cost)
 # 初始化
@@ -88,10 +90,15 @@ display_step = 2
 # 启动session
 with tf.Session() as sess:
     sess.run(init)
+    merge_summary_op = tf.summary.merge_all()                                         # 合并所有summary
+    summary_writer = tf.summary.FileWriter('./log/mnist_with_summaries', sess.graph)  # 创建summary_writer，用于写入文件
     plot_data = {'batch size': [], 'loss': []}
     for epoch in range(train_epochs):
         for (in_x, in_y) in zip(train_x, train_y):
             sess.run(optimizer, feed_dict={input_dict['x']: in_x, input_dict['y']: in_y})
+
+        summary_str = sess.run(merge_summary_op, feed_dict={input_dict['x']: train_x, input_dict['y']: train_y})  # 生成summary
+        summary_writer.add_summary(summary_str, epoch)                                # 将summary写入文件
         # 显示详细信息
         if epoch % display_step == display_step - 1:
             loss = sess.run(cost, feed_dict={input_dict['x']: train_x, input_dict['y']: train_y})
