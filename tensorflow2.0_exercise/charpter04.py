@@ -224,8 +224,8 @@ tf.disable_v2_behavior()  # 关闭动态图模式
 #     print("var3:{}".format(var3.eval()))
 
 # 实例18:作用域与操作符的受限范围
-with tf.variable_scope("scope1") as sp:
-    var1 = tf.get_variable("firstvar1", shape=[2])
+# with tf.variable_scope("scope1") as sp:
+#     var1 = tf.get_variable("firstvar1", shape=[2])
 # with tf.variable_scope("scope2"):
 #     var2 = tf.get_variable("firstvar", shape=[2])
 #     with tf.variable_scope(sp) as sp1:  # variable_scope用了as后,再次被调用时不受外围scope的限制
@@ -256,3 +256,68 @@ with tf.variable_scope("scope1") as sp:
 # print("y:{}".format(y.op.name))
 # print()
 
+# 实例19：图的基本操作
+# c = tf.constant(1.0)  # 自动建立一个默认图
+#
+# g1 = tf.Graph()  # 新建一个图
+# with g1.as_default():
+#     c1 = tf.constant(2.0)
+#     print(c1.graph)
+#     print(g1)
+#     print(c.graph)
+#
+# g2 = tf.get_default_graph()  # 获取默认图
+# print(g2)
+#
+# tf.reset_default_graph()  # 重置默认图
+# g3 = tf.get_default_graph()  # 获取新的默认图
+# print(g3)
+#
+# with tf.Graph().as_default():  # 新建图
+#     tt = tf.get_default_graph()  # 在作用域中回去的是作用域的默认图，而不是全局默认图
+#     print(tt)
+#
+# # 根据名字获取元素
+# print(c1.name)
+# t = g1.get_tensor_by_name(name="Const:0")  # 通过名字获取张量
+# print(t)
+#
+# a = tf.constant([[1.0, 2.0]])
+# b = tf.constant([[1.0], [3.0]])
+#
+# tensor1 = tf.matmul(a, b, name="exampleop")  # 通过matmul的op得到tensor1
+# print(tensor1.name, tensor1)
+# test = g3.get_tensor_by_name("exampleop:0")  # 根据tensor1的名字得到相应的张量
+# print(test)
+#
+# print(tensor1.op.name)  # 输出得到tensor1的op的名字
+# testop = g3.get_operation_by_name("exampleop")  # 根据op的名字来得到相应的op，包含name、op、input、默认type以及是否转置的参数表
+# print(testop)
+#
+# with tf.Session() as sess:
+#     test = sess.run(test)  # 在session中通过op得到的张量返回的就是张量的值
+#     print(test)
+#     test = tf.get_default_graph().get_tensor_by_name("exampleop:0")  # 在session内外通过op名字得到的op是一样的
+#     print(test)
+#
+# # 获取元素列表
+# tt2 = g3.get_operations()  # 获取图中的全部元素
+# print(tt2)
+#
+# # 根据对象来获取图中所对应的元素
+# tt3 = g3.as_graph_element(a)
+# print(tt3)
+# tt3 = g3.as_graph_element(b)
+# print(tt3)
+
+# # 实例20:使用Tensorflow实现分布式部署训练
+# # 定义IP和端口
+# strps_hosts = "localhost:1681"
+# strworker_hosts = "localhost:1682, localhost:1683"
+#
+# # 定义角色名称
+# strjob_name = "ps"
+# task_index = 0
+# # 将字符串转成数组
+# ps_hosts = strps_hosts.split(",")
+# wokrker_hosts
