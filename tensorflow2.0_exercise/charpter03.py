@@ -11,7 +11,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow.compat.v1 as tf  # 将tensorFlow 1.x版本中的静态图接口，替换成将tensorFlow.compat.v1模块下的对应接口
-tf.disable_v2_behavior()  # 关闭动态图模式
+tf.disable_v2_behavior()                                             # 关闭动态图模式
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -78,10 +78,10 @@ para_dict = {'w': tf.Variable(tf.random_normal([1]), name='weight'),
              'b': tf.Variable(tf.zeros([1]), name='bias')}  # 学习参数
 # 前向结构
 y = tf.multiply(para_dict['w'], input_dict['x']) + para_dict['b']
-tf.summary.histogram('predict y', y)                                                    # 记录预测结果到tf.summary，以直方图显示
+tf.summary.histogram('predict y', y)                                 # 记录预测结果到tf.summary，以直方图显示
 # 反向优化
 cost = tf.reduce_mean(tf.square(y - input_dict['y']))
-tf.summary.scalar('loss function', cost)                                              # 记录损失到tf.summary，以标量形式显示
+tf.summary.scalar('loss function', cost)                             # 记录损失到tf.summary，以标量形式显示
 lr = 0.01
 optimizer = tf.train.GradientDescentOptimizer(lr).minimize(cost)
 # 初始化
