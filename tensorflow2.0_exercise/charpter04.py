@@ -10,7 +10,7 @@
 import numpy as np
 import tensorflow.compat.v1 as tf  # 将tensorFlow 1.x版本中的静态图接口，替换成将tensorFlow.compat.v1模块下的对应接口
 
-tf.disable_v2_behavior()  # 关闭动态图模式
+tf.disable_v2_behavior()                                             # 关闭动态图模式
 
 """编程模式"""
 # 实例5-8:注入机制和建立session
