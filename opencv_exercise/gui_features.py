@@ -69,6 +69,7 @@ import numpy as np
 # out.release()                              # 释放
 # cv.destroyAllWindows()
 
+
 # # 绘图功能---------------------------------------------------------------------------------------------------------------
 # img = np.ones((512, 512, 3), np.uint8) * 255                         # 创建画布
 # # 画线
@@ -127,24 +128,128 @@ import numpy as np
 # cv.waitKey()
 # cv.destroyAllWindows()
 
-# 鼠标作为画笔
-events = [i for i in dir(cv) if "EVENT" in i]                        # 获取cv库中鼠标操作的名称
-# print(events)
+
+# # 鼠标作为画笔------------------------------------------------------------------------------------------------------------
+# events = [i for i in dir(cv) if "EVENT" in i]                        # 获取cv库中鼠标操作的名称
+# # print(events)
+# """鼠标操作说明
+# 'EVENT_FLAG_ALTKEY',                                                 # 按住ALT
+# 'EVENT_FLAG_CTRLKEY',                                                # 按住Ctrl
+# 'EVENT_FLAG_LBUTTON',                                                # 按住左键
+# 'EVENT_FLAG_MBUTTON',                                                # 按住中键
+# 'EVENT_FLAG_RBUTTON',                                                # 按住右键
+# 'EVENT_FLAG_SHIFTKEY',                                               # 按住Shift
+# 'EVENT_LBUTTONDBLCLK',                                               # 左键双击
+# 'EVENT_LBUTTONDOWN',                                                 # 左键击下
+# 'EVENT_LBUTTONUP',                                                   # 左键弹起
+# 'EVENT_MBUTTONDBLCLK',                                               # 中键双击
+# 'EVENT_MBUTTONDOWN',                                                 # 中键击下
+# 'EVENT_MBUTTONUP',                                                   # 中键弹起
+# 'EVENT_MOUSEHWHEEL',                                                 # 滚动条向左，flag>0，向右，flag<0
+# 'EVENT_MOUSEMOVE',                                                   # 鼠标移动
+# 'EVENT_MOUSEWHEEL',                                                  # 滚动条向上，flag>0，向下，flag<0
+# 'EVENT_RBUTTONDBLCLK',                                               # 右键双击
+# 'EVENT_RBUTTONDOWN',                                                 # 右键击下
+# 'EVENT_RBUTTONUP'                                                    # 右键弹起
+# """
+#
+#
+# def draw_circle(event, x, y, flags, param):
+#     if event == cv.EVENT_LBUTTONDBLCLK:
+#         cv.circle(img, (x, y), 100, (255, 0, 0), -1)
+#
+#
+# img = np.ones((512, 512, 3))                                         # 创建画布
+# cv.namedWindow("figure")
+# cv.setMouseCallback("figure", draw_circle)                           # setMouseCallback捕捉鼠标操作，默认返回五个参数
+#
+# while True:
+#     cv.imshow("figure", img)
+#     if cv.waitKey(20) & 0xFF == 27:                            # 退出显示
+#         break
+#
+# cv.destroyAllWindows()
+#
+#
+# drawing = False                                                      # 是否敲击鼠标
+# mode = True                                                          # 如果为True，则绘制矩形。按“ m”切换到曲线
+# ix, iy = -1, -1
+#
+#
+# # 鼠标回调函数
+# def draw_circle(event, x, y, flags, param):
+#     global ix, iy, drawing, mode
+#
+#     if event == cv.EVENT_LBUTTONDOWN:                                # 点击左键
+#         drawing = True
+#         ix, iy = x, y
+#     elif event == cv.EVENT_MOUSEMOVE:                                # 移动鼠标
+#         if drawing:
+#             if mode:
+#                 cv.rectangle(img, (ix, iy), (x, y), (0, 255, 0), 5)
+#             else:
+#                 cv.circle(img, (x, y), 5, (0, 0, 255), 5)
+#     elif event == cv.EVENT_LBUTTONUP:                                # 弹起左键
+#         drawing = False
+#         if mode:
+#             cv.rectangle(img, (ix, iy), (x, y), (0, 255, 0), 5)
+#         else:
+#             cv.circle(img, (x, y), 5, (0, 0, 255), 5)
+#
+#
+# img = np.ones((512, 512, 3), np.uint8) * 255
+# cv.namedWindow("figure")
+# cv.setMouseCallback("figure", draw_circle)
+#
+# while True:
+#     cv.imshow("figure", img)
+#     k = cv.waitKey(1) & 0xFF
+#     if k == ord("m"):
+#         mode = not mode
+#     elif k == 27:
+#         break
+#
+# cv.destroyAllWindows()
 
 
-def draw_circle(event, x, y, flags, param):
-    if event == cv.EVENT_LBUTTONDBLCLK:
-        cv.circle(img, (x, y), 100, (255, 0, 0), -1)
+# 生成调色板callback，滑动RGB轨迹栏，改变窗口显示的颜色-------------------------------------------------------------------------
+def nothing(x):
+    pass
 
 
-img = np.ones((512, 512, 3))                                         # 创建画布
+img = np.ones((512, 512, 3), np.uint8) * 255
 cv.namedWindow("figure")
-cv.setMouseCallback("figure", draw_circle)                           # setMouseCallback默认返回五个参数
+
+# 创建用于改变颜色Trackbars
+cv.createTrackbar("R",                                               # 轨迹栏名称
+                  "figure",                                          # 窗口名
+                  0,                                                 # 最小值
+                  255,                                               # 最大值
+                  nothing)                                           #
+cv.createTrackbar("G", "figure", 0, 255, nothing)
+cv.createTrackbar("B", "figure", 0, 255, nothing)
+
+# 创建开关
+switch = "0: OFF\n1: ON"
+cv.createTrackbar(switch, "figure", 0, 1, nothing)
 
 while True:
     cv.imshow("figure", img)
-    if cv.waitKey(20) & 0xFF == ord("q"):
+    k = cv.waitKey(0) & 0xFF
+    if k == 27:
         break
+
+    # 获取Trackbars现在的位置
+    r = cv.getTrackbarPos("R",                                       # 轨迹栏名称
+                          "figure")                                  # 窗口名
+    g = cv.getTrackbarPos("G", "figure")
+    b = cv.getTrackbarPos("B", "figure")
+    s = cv.getTrackbarPos(switch, "figure")
+
+    if s == 0:
+        img[:] = 255
+    else:
+        img[:] = [b, g, r]
 
 cv.destroyAllWindows()
 
