@@ -13,6 +13,7 @@ import numpy as np
 
 
 # # 图像入门---------------------------------------------------------------------------------------------------------------
+# """cv.imread()，cv.imshow()，cv.imwrite()"""
 # # 加载彩色灰度图像
 # img = cv.imread("meow.jpg")                                       # 路径有问题时会返回None
 #
@@ -36,6 +37,7 @@ import numpy as np
 
 
 # # 视频入门---------------------------------------------------------------------------------------------------------------
+# """cv.VideoCapture()，cv.VideoWriter()"""
 # cap = cv.VideoCapture("peacock.mp4")       # 参数可以是设备索引或视频名称
 # if not cap.isOpened():                     # 检查cap是否初始化，初始化成功则可以用cap.open()打开
 #     print("Cannot open camera")
@@ -71,6 +73,7 @@ import numpy as np
 
 
 # # 绘图功能---------------------------------------------------------------------------------------------------------------
+# """cv.line()，cv.circle()，cv.rectangle()，cv.ellipse()，cv.putText()等。"""
 # img = np.ones((512, 512, 3), np.uint8) * 255                         # 创建画布
 # # 画线
 # cv.line(img,                                                         # 画布
@@ -130,6 +133,7 @@ import numpy as np
 
 
 # # 鼠标作为画笔------------------------------------------------------------------------------------------------------------
+# """cv.setMouseCallback()"""
 # events = [i for i in dir(cv) if "EVENT" in i]                        # 获取cv库中鼠标操作的名称
 # # print(events)
 # """鼠标操作说明
@@ -213,6 +217,7 @@ import numpy as np
 
 
 # 生成调色板callback，滑动RGB轨迹栏，改变窗口显示的颜色-------------------------------------------------------------------------
+"""cv.getTrackbarPos()，cv.createTrackbar()等。"""
 def nothing(x):
     pass
 
