@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Hello</title>
+    <!--给标题元素<h1>加一个样式，变成48号字体，橙色，带红色阴影-->
+    <style>
+        h1 {
+            color: #cd845c;
+            font-size: 48px;
+            text-shadow: 3px 3px 3px #a52a2a;
+        }
+    </style>
+    <!--当用户点击标题时把标题变成蓝色-->
+    <script>
+        function change() {
+            document.getElementsByTagName("h1")[0].style.color = "#2a57a5"
+        }
+    </script>
+</head>
+<body>
+    <h1 onclick="change()">Hello, world!</h1>
+</body>
+</html>
