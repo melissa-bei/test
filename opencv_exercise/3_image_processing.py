@@ -9,6 +9,7 @@
 ================================================="""
 import cv2 as cv
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 # # 改变色彩空间------------------------------------------------------------------------------------------------------------
@@ -78,91 +79,241 @@ import numpy as np
 # cv.destroyAllWindows()
 
 
-# 图像的几何变换-----------------------------------------------------------------------------------------------------------
-"""cv.getPerspectiveTransform()
-opencv提供了两个转换功能，cv.warpAffine和cv.warpPerspective
-cv.warpAffine：       仿射变换，采用2x3的转换矩阵
-cv.warpPerspective：  透视变换，采用3x3的转换矩阵
-"""
-# Scaling，缩放
-img = cv.imread("opencv.jpg")
+# # 图像的几何变换-----------------------------------------------------------------------------------------------------------
+# """cv.getPerspectiveTransform()
+# opencv提供了两个转换功能，cv.warpAffine和cv.warpPerspective
+# cv.warpAffine：       仿射变换，采用2x3的转换矩阵
+# cv.warpPerspective：  透视变换，采用3x3的转换矩阵
+# """
+# # Scaling，缩放
+# img = cv.imread("opencv.jpg")
+#
+# resize1 = cv.resize(img,
+#                     None,
+#                     fx=2,
+#                     fy=2,
+#                     interpolation=cv.INTER_CUBIC)
+# # 或者
+# height, width = img.shape[:2]                                        # (高，宽，通道数)
+# resize2 = cv.resize(img,
+#                     (2 * width, 2 * height),                         # (宽， 高)
+#                     interpolation=cv.INTER_CUBIC)
+# # Translation，平移
+# rows, cols = img.shape[:2]
+# M = np.float32([[1, 0, 100], [0, 1, 50]])                            # 转换矩阵[[1, 0, tx], [0, 1, ty]]
+# translation = cv.warpAffine(img,
+#                             M,                                       # 平移矩阵 x=M11*x+M12*y+M13, y=M21*x+M22*y+M23
+#                             (cols, rows))                            # (宽，高)
+#
+# # Rotation，旋转，opencv加入了可设置旋转中心
+# """
+# 转换矩阵[[cos x, -sin x],
+#         [sin x, cos x]]
+# ---->
+# [[a,  b, (1 - a) * center * x - b * center * y],
+#  [-b, a, b * center * x + (1 + a) * center * y]]
+# 其中，a = scale * cos x,
+#      b = scale * sin x
+#
+# opencv提供了cv.getRotationMatrix2D函数来找到该转换矩阵
+# """
+# M = cv.getRotationMatrix2D(((cols-1)/2.0, (rows-1)/2.0),             # center
+#                            90,                                       # angle
+#                            1)                                        # scale
+# rotation = cv.warpAffine(img, M, (cols, rows))
+#
+# # Affine Transformation仿射变换
+# """在仿射变换中，原始图像中的所有平行线在输出图像中仍将平行"""
+# grid = cv.imread("grid.png")
+# rows, cols = grid.shape[:2]
+#
+# pts1 = np.float32([[50, 50], [200, 50], [50, 200]])                  # 变换前的点
+# pts2 = np.float32([[10, 100], [200, 50], [100, 250]])                # 变换后的点
+#
+# M = cv.getAffineTransform(pts1, pts2)                                # 由图像中的三个点确定转换矩阵
+#
+# affine = cv.warpAffine(grid, M, (cols, rows))
+# for _, pt in enumerate(pts1):
+#     cv.circle(grid, (pt[0], pt[1]), 3, [0, 0, 255], -1)
+# for _, pt in enumerate(pts2):
+#     cv.circle(affine, (pt[0], pt[1]), 3, [255, 0, 0], -1)
+#
+#
+# # Perspective Transformation，透视变换
+# """
+# 透视变换需要3x3的变换矩阵，变换后直线仍是直线
+# """
+# chessboard = cv.imread("chessboard.jpg")
+# rows, cols = chessboard.shape[:2]
+#
+# pts1 = np.float32([[110, 92], [405, 75], [131, 285], [413, 270]])    # 变换前的点
+# pts2 = np.float32([[0, 0], [cols, 0], [0, rows], [cols, rows]])      # 变换后的点
+#
+# M = cv.getPerspectiveTransform(pts1, pts2)                           # 由图像中的四个点确定转换矩阵
+#
+# perspective = cv.warpPerspective(chessboard, M, (cols, rows))
+#
+# for _, pt in enumerate(pts1):
+#     cv.circle(chessboard, (pt[0], pt[1]), 3, [0, 0, 255], -1)
+# for _, pt in enumerate(pts2):
+#     cv.circle(perspective, (pt[0], pt[1]), 3, [255, 0, 0], -1)
+#
+# cv.imshow("original image", img)
+# cv.imshow("resize1", resize1)
+# cv.imshow("resize2", resize2)
+# cv.imshow("translation", translation)
+# cv.imshow("rotation", rotation)
+# cv.imshow("affine", np.hstack((grid, affine)))                       # np.hstack水平方向拼接矩阵
+# cv.imshow("perspective", np.hstack((chessboard, perspective)))       # np.hstack水平方向拼接矩阵
+# cv.waitKey(0)
+# cv.destroyAllWindows()
 
-resize1 = cv.resize(img,
-                    None,
-                    fx=2,
-                    fy=2,
-                    interpolation=cv.INTER_CUBIC)
-# 或者
-height, width = img.shape[:2]                                        # (高，宽，通道数)
-resize2 = cv.resize(img,
-                    (2 * width, 2 * height),                         # (宽， 高)
-                    interpolation=cv.INTER_CUBIC)
-# Translation，平移
-rows, cols = img.shape[:2]
-M = np.float32([[1, 0, 100], [0, 1, 50]])                            # 转换矩阵[[1, 0, tx], [0, 1, ty]]
-translation = cv.warpAffine(img,
-                            M,                                       # 平移矩阵 x=M11*x+M12*y+M13, y=M21*x+M22*y+M23
-                            (cols, rows))                            # (宽，高)
 
-# Rotation，旋转，opencv加入了可设置旋转中心
-"""
-转换矩阵[[cos x, -sin x],
-        [sin x, cos x]]
----->
-[[a,  b, (1 - a) * center * x - b * center * y],
- [-b, a, b * center * x + (1 + a) * center * y]]
-其中，a = scale * cos x, 
-     b = scale * sin x
-     
-opencv提供了cv.getRotationMatrix2D函数来找到该转换矩阵
-"""
-M = cv.getRotationMatrix2D(((cols-1)/2.0, (rows-1)/2.0),             # center
-                           90,                                       # angle
-                           1)                                        # scale
-rotation = cv.warpAffine(img, M, (cols, rows))
+# # 图像阈值----------------------------------------------------------------------------------------------------------------
+# """cv.threshold()和cv.adaptiveThreshold()
+#     简单阈值类型:
+#     cv.THRESH_BINARY：            大于阈值则为最大值，否则为0
+#     cv.THRESH_BINARY_INV:        大于阈值为0，否则为最大值
+#     cv.THRESH_TRUNC:             大于阈值为最大值，否则不改变
+#     cv.THRESH_TOZERO:            大于阈值不改变，否则为0
+#     cv.THRESH_TOZERO_INV:        大于阈值为0，否则不改变
+# """
+# # 全局阈值
+# img = np.array([[i for i in range(256)] for _ in range(256)],        # 生成灰度渐变图像
+#                dtype=np.uint8)
+# ret, threshold1 = cv.threshold(img,                                  # 源图像
+#                                127,                                  # 阈值
+#                                255,                                  # 最大值
+#                                cv.THRESH_BINARY)                     # 阈值类型
+# _, threshold2 = cv.threshold(img, 127, 255, cv.THRESH_BINARY_INV)
+# _, threshold3 = cv.threshold(img, 127, 255, cv.THRESH_TRUNC)
+# _, threshold4 = cv.threshold(img, 127, 255, cv.THRESH_TOZERO)
+# _, threshold5 = cv.threshold(img, 127, 255, cv.THRESH_TOZERO_INV)
+#
+# titles = ["Original image", "BINARY", "BINARY_INV", "TRUNC", "TOZERO", "TOZERO_INV"]
+# images = [img, threshold1, threshold2, threshold3, threshold4, threshold5]
+#
+# for i in range(6):
+#     plt.subplot(2, 3, i+1), plt.imshow(images[i], "gray")
+#     plt.title(titles[i])
+#     plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# # 自适应阈值，局部阈值
+# img = cv.imread("sudoku.png", 0)
+# img = cv.medianBlur(img, 5)
+#
+# _, threshold1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)
+# threshold2 = cv.adaptiveThreshold(img,                               # 源图像
+#                                   255,                               # 最大值
+#                                   cv.ADAPTIVE_THRESH_MEAN_C,         # 自适应方法
+#                                   cv.THRESH_BINARY,                  # 阈值类型
+#                                   11,                                # 邻域大小
+#                                   2)                                 # 从平均值或加权平均值中减去的常数。通常为正数，但也可能为零或负数。
+# threshold3 = cv.adaptiveThreshold(img, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 11, 2)
+#
+# titles = ['Original Image', 'Global Thresholding (v = 127)',
+#           'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
+# images = [img, threshold1, threshold2, threshold3]
+#
+# for i in range(4):
+#     plt.subplot(2, 2, i+1), plt.imshow(images[i], 'gray')
+#     plt.title(titles[i])
+#     plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+#
+# # OTSU二值化
+# def sp_noise(image, prob):
+#     """
+#         添加椒盐噪声
+#         :param image:
+#         :param prob:    噪声比例
+#         """
+#     output = np.zeros(image.shape, np.uint8)
+#     thres = 1 - prob
+#     for i in range(image.shape[0]):
+#         for j in range(image.shape[1]):
+#             rdn = np.random.random()
+#             if rdn < prob:
+#                 output[i][j] = 0
+#             elif rdn > thres:
+#                 output[i][j] = 255
+#             else:
+#                 output[i][j] = image[i][j]
+#     return output
+#
+#
+# def gasuss_noise(image, mean=0, var=0.001):
+#     """
+#         添加高斯噪声
+#         :param image:
+#         :param mean:  均值
+#         :param var:   方差
+#         """
+#     image = np.array(image/255, dtype=float)
+#     noise = np.random.normal(mean, var ** 0.5, image.shape)
+#     out = image + noise
+#     if out.min() < 0:
+#         low_clip = -1.
+#     else:
+#         low_clip = 0.
+#     out = np.clip(out, low_clip, 1.0)
+#     out = np.uint8(out*255)
+#     return out
+#
+#
+# img = (np.ones([256, 256]) * 255).astype("uint8")                    # 生成带椒盐噪声的图像
+# img = cv.copyMakeBorder(img, 128, 128, 128, 128, borderType=cv.BORDER_CONSTANT, value=[0])
+# img = sp_noise(img, 0.1)
+#
+# ret1, threshold1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)
+# ret2, threshold2 = cv.threshold(img, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+# blur = cv.GaussianBlur(img, (5, 5), 0)
+# ret3, threshold3 = cv.threshold(blur, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+#
+# images = [img, 0, threshold1,
+#           img, 0, threshold2,
+#           blur, 0, threshold3]
+# titles = ['Original Noisy Image', 'Histogram', 'Global Thresholding (v=127)',
+#           'Original Noisy Image', 'Histogram', "Otsu's Thresholding",
+#           'Gaussian filtered Image', 'Histogram', "Otsu's Thresholding"]
+# for i in range(3):
+#     plt.subplot(3, 3, i * 3 + 1), plt.imshow(images[i * 3], 'gray')
+#     plt.title(titles[i * 3]), plt.xticks([]), plt.yticks([])
+#     plt.subplot(3, 3, i * 3 + 2), plt.hist(images[i * 3].ravel(), 256)
+#     plt.title(titles[i * 3 + 1]), plt.xticks([]), plt.yticks([])
+#     plt.subplot(3, 3, i * 3 + 3), plt.imshow(images[i * 3 + 2], 'gray')
+#     plt.title(titles[i * 3 + 2]), plt.xticks([]), plt.yticks([])
+# plt.show()
 
-# Affine Transformation仿射变换
-"""在仿射变换中，原始图像中的所有平行线在输出图像中仍将平行"""
-grid = cv.imread("grid.png")
-rows, cols = grid.shape[:2]
+# 手动实现OTSU算法
+img = cv.imread("sudoku.png", 0)
+# img = (np.ones([256, 256]) * 255).astype("uint8")
+# img = cv.copyMakeBorder(img, 128, 128, 128, 128, borderType=cv.BORDER_CONSTANT, value=[0])
+# img = sp_noise(img, 0.1)
+blur = cv.GaussianBlur(img, (5, 5), 0)
 
-pts1 = np.float32([[50, 50], [200, 50], [50, 200]])                  # 变换前的点
-pts2 = np.float32([[10, 100], [200, 50], [100, 250]])                # 变换后的点
+hist = cv.calcHist([blur], [0], None, [256], [0, 256])               # 直方图统计
+hist_norm = hist.ravel()/hist.max()                                  # 归一化到0~1之间
+Q = hist_norm.cumsum()                                               # 累计求和
+bins = np.arange(256)
 
-M = cv.getAffineTransform(pts1, pts2)                                # 由图像中的三个点确定转换矩阵
+fn_min = np.inf
+thresh = -1
 
-affine = cv.warpAffine(grid, M, (cols, rows))
-for _, pt in enumerate(pts1):
-    cv.circle(grid, (pt[0], pt[1]), 3, [0, 0, 255], -1)
-for _, pt in enumerate(pts2):
-    cv.circle(affine, (pt[0], pt[1]), 3, [255, 0, 0], -1)
+for i in range(1, 256):
+    p1, p2 = np.hsplit(hist_norm, [i])                               # 从i切分直方图
+    q1, q2 = Q[i], Q[255] - Q[i]                                     # 分别计算出两个直方图的概率和
+    b1, b2 = np.hsplit(bins, [i])
 
+    m1, m2 = np.sum(p1 * b1) / (q1 + 0.00001), np.sum(p2 * b2) / (q2 + 0.00001)
+    v1, v2 = np.sum(((b1 - m1) ** 2) * p1) / (q1 + 0.00001), np.sum(((b2 - m2) ** 2) * p2) / (q2 + 0.00001)
 
-# Perspective Transformation，透视变换
-"""
-透视变换需要3x3的变换矩阵，变换后直线仍是直线
-"""
-chessboard = cv.imread("chessboard.jpg")
-rows, cols = chessboard.shape[:2]
+    fn = v1 * q1 + v2 * q2
+    if fn < fn_min:
+        fn_min = fn
+        thresh = i
 
-pts1 = np.float32([[110, 92], [405, 75], [131, 285], [413, 270]])    # 变换前的点
-pts2 = np.float32([[0, 0], [cols, 0], [0, rows], [cols, rows]])      # 变换后的点
-
-M = cv.getPerspectiveTransform(pts1, pts2)                           # 由图像中的四个点确定转换矩阵
-
-perspective = cv.warpPerspective(chessboard, M, (cols, rows))
-
-for _, pt in enumerate(pts1):
-    cv.circle(chessboard, (pt[0], pt[1]), 3, [0, 0, 255], -1)
-for _, pt in enumerate(pts2):
-    cv.circle(perspective, (pt[0], pt[1]), 3, [255, 0, 0], -1)
-
-cv.imshow("original image", img)
-cv.imshow("resize1", resize1)
-cv.imshow("resize2", resize2)
-cv.imshow("translation", translation)
-cv.imshow("rotation", rotation)
-cv.imshow("affine", np.hstack((grid, affine)))                         # np.vstack水平方向拼接矩阵
-cv.imshow("perspective", np.hstack((chessboard, perspective)))         # np.vstack水平方向拼接矩阵
-cv.waitKey(0)
-cv.destroyAllWindows()
+ret, otsu = cv.threshold(blur, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+print("{} {}".format(thresh, ret))
