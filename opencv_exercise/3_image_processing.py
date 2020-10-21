@@ -287,33 +287,139 @@ import matplotlib.pyplot as plt
 #     plt.title(titles[i * 3 + 2]), plt.xticks([]), plt.yticks([])
 # plt.show()
 
-# 手动实现OTSU算法
-img = cv.imread("sudoku.png", 0)
-# img = (np.ones([256, 256]) * 255).astype("uint8")
-# img = cv.copyMakeBorder(img, 128, 128, 128, 128, borderType=cv.BORDER_CONSTANT, value=[0])
-# img = sp_noise(img, 0.1)
-blur = cv.GaussianBlur(img, (5, 5), 0)
 
-hist = cv.calcHist([blur], [0], None, [256], [0, 256])               # 直方图统计
-hist_norm = hist.ravel()/hist.max()                                  # 归一化到0~1之间
-Q = hist_norm.cumsum()                                               # 累计求和
-bins = np.arange(256)
+# # 图像平滑----------------------------------------------------------------------------------------------------------------
+# """学习各种低通滤波来模糊图像，cv.filter2D()
+# 低通滤波用于去噪模糊等，高通滤波用于找到图像边缘
+# """
+# img = cv.imread("meow.jpg")[:, :, ::-1]
+#
+# kernel = np.ones((5, 5), np.float32) / 25
+# dst = cv.filter2D(img,                                               # 二维卷积
+#                   -1,                                                # 通道数，-1
+#                   kernel)                                            # 卷积核
+#
+# plt.subplot(121), plt.imshow(img), plt.title("Original")
+# plt.xticks([]), plt.yticks([])
+# plt.subplot(122), plt.imshow(dst), plt.title("Averaging")
+# plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# blur = cv.blur(img,                                                  # 模糊图像，均值滤波
+#                (5, 5))                                               # 模糊核
+# plt.subplot(121), plt.imshow(img), plt.title("Original")
+# plt.xticks([]), plt.yticks([])
+# plt.subplot(122), plt.imshow(blur), plt.title("Average Blur")
+# plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# gauss_blur = cv.GaussianBlur(img,                                    # 模糊图像，高斯滤波
+#                              (5, 5),                                 # 高斯卷积核
+#                              0)                                      # sigma
+# plt.subplot(121), plt.imshow(img), plt.title("Original")
+# plt.xticks([]), plt.yticks([])
+# plt.subplot(122), plt.imshow(gauss_blur), plt.title("Gaussian Blur")
+# plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# median_blur = cv.medianBlur(img,                                     # 模糊图像，中值滤波
+#                             5,                                       # 核大小
+#                             0)                                       # sigma
+# plt.subplot(121), plt.imshow(img), plt.title("Original")
+# plt.xticks([]), plt.yticks([])
+# plt.subplot(122), plt.imshow(median_blur), plt.title("Media Blur")
+# plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# bilateral_blur = cv.bilateralFilter(img,                             # 模糊图像，双边滤波
+#                                     9,                               # 核大小
+#                                     75,                              # 颜色空间过滤的sigma
+#                                     75)                              # 坐标空间中过滤的sigma
+# plt.subplot(121), plt.imshow(img), plt.title("Original")
+# plt.xticks([]), plt.yticks([])
+# plt.subplot(122), plt.imshow(bilateral_blur), plt.title("Bilateral Blur")
+# plt.xticks([]), plt.yticks([])
+# plt.show()
 
-fn_min = np.inf
-thresh = -1
 
-for i in range(1, 256):
-    p1, p2 = np.hsplit(hist_norm, [i])                               # 从i切分直方图
-    q1, q2 = Q[i], Q[255] - Q[i]                                     # 分别计算出两个直方图的概率和
-    b1, b2 = np.hsplit(bins, [i])
+# # 形态转换----------------------------------------------------------------------------------------------------------------
+# """cv.erode(), cv.dilate(), cv.morphologyEx()"""
+# img = cv.imread("j.png")
+# kernel = np.ones((5, 5), np.uint8)
+#
+# erosion = cv.erode(img,                                              # 腐蚀
+#                    kernel,
+#                    iterations=1)                                     # 迭代次数
+# plt.imshow(np.hstack([img, erosion])), plt.title("Erosion"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# dilation = cv.dilate(img, kernel, iterations=1)                      # 膨胀
+# plt.imshow(np.hstack([img, dilation])), plt.title("Dilation"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# gradient = cv.morphologyEx(img, cv.MORPH_GRADIENT, kernel)           # 形态梯度：膨胀与腐蚀之差，能够保留物体边缘
+# plt.imshow(np.hstack([img, gradient])), plt.title("Gradient"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# img = cv.imread("j1.png")
+# opening = cv.morphologyEx(img,
+#                           cv.MORPH_OPEN,                             # 开运算：先腐蚀再膨胀，能够去除细小点
+#                           kernel)                                    # 迭代次数不为1时，是腐蚀->腐蚀->膨胀->膨胀
+# plt.imshow(np.hstack([img, opening])), plt.title("Opening"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# img = cv.imread("j1.png")
+# tophat = cv.morphologyEx(img, cv.MORPH_TOPHAT, kernel)               # 顶帽，原图像与开运算之差
+# plt.imshow(np.hstack([img, tophat])), plt.title("Top Hat"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# img = cv.imread("j2.png")
+# closing = cv.morphologyEx(img, cv.MORPH_CLOSE, kernel)               # 闭运算：先膨胀再腐蚀，能够去除孔洞
+# plt.imshow(np.hstack([img, closing])), plt.title("Closing"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# img = cv.imread("j2.png")
+# blackhat = cv.morphologyEx(img, cv.MORPH_BLACKHAT, kernel)           # 黑帽，闭运算与原图像之差
+# plt.imshow(np.hstack([img, blackhat])), plt.title("Black Hat"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# # 结构元素，用来创建特殊形状的核，只需传入核的形状核大小
+# k_rect = cv.getStructuringElement(cv.MORPH_RECT, (5, 5))
+# print("k_rect:{}".format(k_rect))
+# k_ellipse = cv.getStructuringElement(cv.MORPH_ELLIPSE, (5, 5))
+# print("k_ellipse:{}".format(k_ellipse))
+# k_cross = cv.getStructuringElement(cv.MORPH_CROSS, (5, 5))
+# print("k_ellipse:{}".format(k_ellipse))
 
-    m1, m2 = np.sum(p1 * b1) / (q1 + 0.00001), np.sum(p2 * b2) / (q2 + 0.00001)
-    v1, v2 = np.sum(((b1 - m1) ** 2) * p1) / (q1 + 0.00001), np.sum(((b2 - m2) ** 2) * p2) / (q2 + 0.00001)
 
-    fn = v1 * q1 + v2 * q2
-    if fn < fn_min:
-        fn_min = fn
-        thresh = i
+# 图像梯度---------------------------------------------------------------------------------------------------------------
+"""cv.Sobel（），cv.Scharr（），cv.Laplacian（）"""
+# sobel算子是高斯平滑家微分运算的联合，更耐噪声
+img = cv.imread("meow.jpg", 0)
 
-ret, otsu = cv.threshold(blur, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
-print("{} {}".format(thresh, ret))
+laplacian = cv.Laplacian(img, cv.CV_64F)                             # 64位浮点数
+sobelx = cv.Sobel(img,                                               #
+                  cv.CV_64F,                                         # 输出图像深度
+                  1,                                                 # x方向导数的阶数
+                  0,                                                 # y方向导数的阶数
+                  ksize=5)
+sobely = cv.Sobel(img, cv.CV_64F, 0, 1, ksize=5)
+plt.subplot(221), plt.imshow(img, cmap='gray'), plt.title('Original'), plt.xticks([]), plt.yticks([])
+plt.subplot(222), plt.imshow(laplacian, cmap='gray'), plt.title('Laplacian'), plt.xticks([]), plt.yticks([])
+plt.subplot(2,2,3), plt.imshow(sobelx, cmap='gray'), plt.title('Sobel X'), plt.xticks([]), plt.yticks([])
+plt.subplot(224), plt.imshow(sobely, cmap='gray'), plt.title('Sobel Y'), plt.xticks([]), plt.yticks([])
+plt.show()
+
+img = np.ones((256, 256), np.uint8) * 255
+img = cv.copyMakeBorder(img, 128, 128, 128, 128, cv.BORDER_CONSTANT, 0)
+
+# Output dtype = cv.CV_8U，此时由1变为0的负梯度会被截断为0，也就检测不到了
+sobelx8u = cv.Sobel(img, cv.CV_8U, 1, 0, ksize=5)
+# Output dtype = cv.CV_64F. Then take its absolute and convert to cv.CV_8U
+sobelx64f = cv.Sobel(img, cv.CV_64F, 1, 0, ksize=5)
+abs_sobel64f = np.absolute(sobelx64f)
+sobel_8u = np.uint8(abs_sobel64f)
+plt.subplot(131), plt.imshow(img, cmap='gray'), plt.title('Original'), plt.xticks([]), plt.yticks([])
+plt.subplot(132), plt.imshow(sobelx8u, cmap='gray'), plt.title('Sobel CV_8U'), plt.xticks([]), plt.yticks([])
+plt.subplot(133), plt.imshow(sobel_8u, cmap='gray'), plt.title('Sobel abs(CV_64F)'), plt.xticks([]), plt.yticks([])
+plt.show()
