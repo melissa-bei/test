@@ -791,3 +791,51 @@ plt.rcParams['axes.unicode_minus'] = False
 #
 # print(cv.matchShapes(cnt_a, cnt_b, 1, 0.0))                          # a和b的形状差异度
 # print(cv.matchShapes(cnt_a, cnt_c, 1, 0.0))                          # a和c的形状差异度
+
+
+# Homework1：Check the documentation for cv.pointPolygonTest(), you can find a nice image in Red and Blue color. It
+# represents the distance from all pixels to the white curve on it. All pixels inside curve is blue depending on the
+# distance. Similarly outside points are red. Contour edges are marked with White. So problem is simple. Write a code
+# to create such a representation of distance.
+
+
+# Homework2：Compare images of digits or letters using cv.matchShapes(). ( That would be a simple step towards OCR )
+from tensorflow.keras.datasets import mnist                          # 从mnist库获取手写数字
+(x, y), (_, _) = mnist.load_data("mnist.npz")                        # 导入MNIST数据接口
+size = 50
+x = np.asarray([cv.resize(x[i, :, :], (128, 128)) for i in range(size)])
+y = y[:size]
+cnts = []
+
+plt_x = 10
+plt_y = int(np.ceil(size / plt_x))
+for idx in range(size):
+    cnt = cv.findContours(x[idx, :, :], 1, 2)[0]                     # 计算所有数字的轮廓
+    cnts.append(cnt)
+    plt.subplot(plt_y, plt_x, idx + 1)
+    plt.imshow(x[idx, :, :], cmap="gray")
+    plt.title(y[idx]), plt.xticks([]), plt.yticks([])
+plt.show()
+
+cnts_1 = []
+for idx in range(size):
+    if y[idx] == 1:                                                  # 找出所有数字1的轮廓
+        cnts_1.append(cnts[idx])
+        img = x[idx, :, :]
+        # img = np.expand_dims(img, axis=0)
+        # img = np.concatenate((img, img, img), axis=0)
+        # tmp = cnts_1[-1]
+        cv.drawContours(img, cnts_1[-1], -1, (0, 255, 0), 2)
+        cv.imshow("num", img
+                  )
+        cv.waitKey(0)
+        cv.destroyWindow("num")
+
+for i in range(len(cnts_1)):                                         # 计算每两个1之间的差异值
+    for j in range(i + 1, len(cnts_1)):
+        val = cv.matchShapes(cnts_1[i][0], cnts_1[j][0], 1, 0.0)
+        print(val)
+
+
+
+
