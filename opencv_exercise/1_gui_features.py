@@ -121,7 +121,7 @@ import numpy as np
 #            "OpenCV",                                                 # 内容
 #            (10, 500),                                                # 起点
 #            font,                                                     # 字形
-#            4,                                                        # 字的大小
+#            4,                                                        # 字体缩放系数
 #            (0, 0, 0),                                                # 颜色
 #            0,                                                        # 线的类型
 #            cv.LINE_AA,                                               # 线宽
@@ -218,6 +218,8 @@ import numpy as np
 
 # 生成调色板callback，滑动RGB轨迹栏，改变窗口显示的颜色-------------------------------------------------------------------------
 """cv.getTrackbarPos()，cv.createTrackbar()等。"""
+
+
 def nothing(x):
     pass
 

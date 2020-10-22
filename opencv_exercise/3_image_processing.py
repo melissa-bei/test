@@ -10,7 +10,9 @@
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
-
+# 解决中文显示问题
+plt.rcParams['font.sans-serif']=['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
 
 # # 改变色彩空间------------------------------------------------------------------------------------------------------------
 # """cv.cvtColor()，cv.inRange()等。"""
@@ -392,34 +394,400 @@ import matplotlib.pyplot as plt
 # print("k_ellipse:{}".format(k_ellipse))
 
 
-# 图像梯度---------------------------------------------------------------------------------------------------------------
-"""cv.Sobel（），cv.Scharr（），cv.Laplacian（）"""
-# sobel算子是高斯平滑家微分运算的联合，更耐噪声
-img = cv.imread("meow.jpg", 0)
+# # 图像梯度---------------------------------------------------------------------------------------------------------------
+# """cv.Sobel（），cv.Scharr（），cv.Laplacian（）"""
+# # sobel算子是高斯平滑家微分运算的联合，更耐噪声
+# img = cv.imread("meow.jpg", 0)
+#
+# laplacian = cv.Laplacian(img, cv.CV_64F)                             # 64位浮点数
+# sobel_x = cv.Sobel(img,                                              #
+#                    cv.CV_64F,                                        # 输出图像深度
+#                    1,                                                # x方向导数的阶数
+#                    0,                                                # y方向导数的阶数
+#                    ksize=5)
+# sobel_y = cv.Sobel(img, cv.CV_64F, 0, 1, ksize=5)
+# plt.subplot(221), plt.imshow(img, cmap='gray'), plt.title('Original'), plt.xticks([]), plt.yticks([])
+# plt.subplot(222), plt.imshow(laplacian, cmap='gray'), plt.title('Laplacian'), plt.xticks([]), plt.yticks([])
+# plt.subplot(223), plt.imshow(sobel_x, cmap='gray'), plt.title('Sobel X'), plt.xticks([]), plt.yticks([])
+# plt.subplot(224), plt.imshow(sobel_y, cmap='gray'), plt.title('Sobel Y'), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# img = np.ones((256, 256), np.uint8) * 255
+# img = cv.copyMakeBorder(img, 128, 128, 128, 128, cv.BORDER_CONSTANT, 0)
+#
+# # Output dtype = cv.CV_8U，此时由1变为0的负梯度会被截断为0，也就检测不到了
+# sobel_x_8u = cv.Sobel(img, cv.CV_8U, 1, 0, ksize=5)
+# # Output dtype = cv.CV_64F. Then take its absolute and convert to cv.CV_8U
+# sobel_x_64f = cv.Sobel(img, cv.CV_64F, 1, 0, ksize=5)
+# abs_sobel_64f = np.absolute(sobel_x_64f)
+# sobel_8u = np.uint8(abs_sobel_64f)
+# plt.subplot(131), plt.imshow(img, cmap='gray'), plt.title('Original'), plt.xticks([]), plt.yticks([])
+# plt.subplot(132), plt.imshow(sobel_x_8u, cmap='gray'), plt.title('Sobel CV_8U'), plt.xticks([]), plt.yticks([])
+# plt.subplot(133), plt.imshow(sobel_8u, cmap='gray'), plt.title('Sobel abs(CV_64F)'), plt.xticks([]), plt.yticks([])
+# plt.show()
 
-laplacian = cv.Laplacian(img, cv.CV_64F)                             # 64位浮点数
-sobelx = cv.Sobel(img,                                               #
-                  cv.CV_64F,                                         # 输出图像深度
-                  1,                                                 # x方向导数的阶数
-                  0,                                                 # y方向导数的阶数
-                  ksize=5)
-sobely = cv.Sobel(img, cv.CV_64F, 0, 1, ksize=5)
-plt.subplot(221), plt.imshow(img, cmap='gray'), plt.title('Original'), plt.xticks([]), plt.yticks([])
-plt.subplot(222), plt.imshow(laplacian, cmap='gray'), plt.title('Laplacian'), plt.xticks([]), plt.yticks([])
-plt.subplot(2,2,3), plt.imshow(sobelx, cmap='gray'), plt.title('Sobel X'), plt.xticks([]), plt.yticks([])
-plt.subplot(224), plt.imshow(sobely, cmap='gray'), plt.title('Sobel Y'), plt.xticks([]), plt.yticks([])
-plt.show()
 
-img = np.ones((256, 256), np.uint8) * 255
-img = cv.copyMakeBorder(img, 128, 128, 128, 128, cv.BORDER_CONSTANT, 0)
+# # Canny边缘检测-----------------------------------------------------------------------------------------------------------
+# """cv.Canny()
+# 1.降噪，使用5x5的高斯滤波，
+# 2.计算梯度，使用sobel算子在水平和竖直方向进行滤波，并计算总的梯度
+# 3.非极大值抑制，
+# 4.阈值界定，需要设置最小阈值和最大阈值，梯度大于最大阈值的必是边缘，小于最小阈值的必定是非边缘，在最大最小阈值之间的连接到边缘的为边缘，没连接的是非边缘。
+# """
+# img = cv.imread("meow.png", 0)
+# edges = cv.Canny(img,
+#                  100,                                                # minVal
+#                  200,                                                # maxVal
+#                  apertureSize=3,                                     # sobel核的大小，默认为3
+#                  L2gradient=None)                                    # 如果为True用精确的梯度计算公式，否则使用|Gx|+|Gy|替代
+#
+# plt.subplot(121), plt.imshow(img, cmap="gray"), plt.title("Original"), plt.xticks([]), plt.yticks([])
+# plt.subplot(122), plt.imshow(edges, cmap="gray"), plt.title("Canny Edges"), plt.xticks([]), plt.yticks([])
+# plt.show()
+#
+# # Homework:Write a small application to find the Canny edge detection whose threshold values can be varied using two
+# # trackbars. This way, you can understand the effect of threshold values.
+#
+#
+# def nothing(x):
+#     pass
+#
+#
+# cv.namedWindow("Canny edges detection")
+# cv.createTrackbar("Low Threshold", "Canny edges detection", 0, 255, nothing)
+# cv.createTrackbar("High Threshold", "Canny edges detection", 0, 255, nothing)
+#
+#
+# img = cv.imread("messi.png", 0)
+# edges = np.zeros_like(img)
+# while True:
+#     cv.imshow("Canny edges detection", np.hstack([img, edges]))
+#     k = cv.waitKey(0) & 0xFF
+#     if k == 27:
+#         break
+#
+#     low = cv.getTrackbarPos("Low Threshold", "Canny edges detection")
+#     high = cv.getTrackbarPos("High Threshold", "Canny edges detection")
+#     if low >= high:
+#         figure = np.zeros_like(img)
+#         cv.putText(figure,
+#                    "Low threshold must lower than high threshold!",
+#                    (10, 100),
+#                    cv.FONT_HERSHEY_SIMPLEX,
+#                    0.5,
+#                    (255, 255, 255),
+#                    1,
+#                    cv.LINE_AA,
+#                    False)
+#         cv.imshow("Warning", figure)
+#         if cv.waitKey(0) == 27:
+#             cv.destroyWindow("Warning")
+#     else:
+#         edges = cv.Canny(img, low, high)
+# cv.destroyAllWindows()
 
-# Output dtype = cv.CV_8U，此时由1变为0的负梯度会被截断为0，也就检测不到了
-sobelx8u = cv.Sobel(img, cv.CV_8U, 1, 0, ksize=5)
-# Output dtype = cv.CV_64F. Then take its absolute and convert to cv.CV_8U
-sobelx64f = cv.Sobel(img, cv.CV_64F, 1, 0, ksize=5)
-abs_sobel64f = np.absolute(sobelx64f)
-sobel_8u = np.uint8(abs_sobel64f)
-plt.subplot(131), plt.imshow(img, cmap='gray'), plt.title('Original'), plt.xticks([]), plt.yticks([])
-plt.subplot(132), plt.imshow(sobelx8u, cmap='gray'), plt.title('Sobel CV_8U'), plt.xticks([]), plt.yticks([])
-plt.subplot(133), plt.imshow(sobel_8u, cmap='gray'), plt.title('Sobel abs(CV_64F)'), plt.xticks([]), plt.yticks([])
-plt.show()
+
+# # 图像金字塔--------------------------------------------------------------------------------------------------------------
+# """cv.pyrUp（），cv.pyrDown（）"""
+# img = cv.imread("messi.png")[:, :, ::-1]
+# plt.imshow(img), plt.title("Original"), plt.show()
+# lower_reso = cv.pyrDown(img)
+# higher_reso = cv.pyrUp(lower_reso)
+# plt.imshow(lower_reso), plt.title("lower"), plt.show()
+# plt.imshow(higher_reso), plt.title("higher"), plt.show()
+#
+# apple = cv.imread("apple.png")[:, :, ::-1]
+# orange = cv.imread("orange.png")[:, :, ::-1]
+#
+# # 生成apple的高斯金字塔
+# G = apple.copy()
+# gpa = [G]                                                            # --最大的图
+# for i in range(6):
+#     G = cv.pyrDown(G)
+#     gpa.append(G)
+#
+# # 生成orange的高斯金字塔
+# G = orange.copy()
+# gpo = [G]
+# for i in range(6):
+#     G = cv.pyrDown(G)
+#     gpo.append(G)
+#
+# # 生成orange的高斯金字塔
+# lpa = [gpa[-1]]                                                      # --最小的图
+# for i in range(6, 0, -1):
+#     GE = cv.pyrUp(gpa[i], dstsize=gpa[i - 1].shape[:2])
+#     L = cv.subtract(gpa[i - 1], GE)                                  # 做差
+#     lpa.append(L)
+#
+# # 生成orange的拉普拉斯金字塔
+# lpo = [gpo[-1]]
+# for i in range(6, 0, -1):
+#     GE = cv.pyrUp(gpo[i], dstsize=gpo[i - 1].shape[:2])
+#     L = cv.subtract(gpo[i - 1], GE)
+#     lpo.append(L)
+#
+# # 拼接各个级别的高斯金字塔图像
+# LS = []
+# for la, lo in zip(lpa, lpo):
+#     rows, cols, dpt = la.shape
+#     ls = np.hstack([la[:, :int(cols/2)], lo[:, int(cols/2):]])
+#     LS.append(ls)
+#
+# # 重建图像
+# ls_ = LS[0]                                                            # --最小的图
+# for i in range(1, 6):
+#     ls_ = cv.pyrUp(ls_, dstsize=LS[i].shape[:2])
+#     ls_ = cv.add(ls_, LS[i])
+#
+# # 直接拼接最高分辨率两图像
+# rows, cols, dpt = apple.shape
+# real = np.hstack([apple[:, :int(cols/2)], orange[:, int(cols/2):]])
+#
+# plt.subplot(221), plt.imshow(apple), plt.title("apple"), plt.xticks([]), plt.yticks([])
+# plt.subplot(222), plt.imshow(orange), plt.title("orange"), plt.xticks([]), plt.yticks([])
+# plt.subplot(223), plt.imshow(ls_), plt.title("金字塔图像融合"), plt.xticks([]), plt.yticks([])
+# plt.subplot(224), plt.imshow(real), plt.title("直接融合"), plt.xticks([]), plt.yticks([])
+# plt.show()
+
+
+# # opencv中的轮廓----------------------------------------------------------------------------------------------------------
+# """cv.findContours(), cv.drawContours()"""
+# img = cv.resize(cv.imread("meow2.png"), (1024, 1024))
+# img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+# ret, thresh = cv.threshold(img_gray, 127, 255, 0)
+# contours, hierarchy = cv.findContours(thresh,                        # 检索轮廓
+#                                       cv.RETR_TREE,                  # 轮廓检索模式
+#                                       cv.CHAIN_APPROX_SIMPLE)        # 轮廓逼近方法，cv.CHAIN_APPROX_SIMPLE如果是直线只保存两个端点，
+#                                                                      #             cv.CHAIN_APPROX_NONE保存所有的点
+# # 返回的contours时图像中所有轮廓的list，每个轮廓都是由包含对象边界点的（x，y）的数组构成；hierarchy是轮廓的层次结构。
+#
+# cv.drawContours(img,
+#                 contours,
+#                 -1,                                                  # 轮廓编号
+#                 (0, 255, 0),                                         # 颜色
+#                 1)                                                   # 线宽
+# cv.imshow("contours", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 轮廓特征----------------------------------------------------------------------------------------------------------------
+# img = cv.imread("star.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, 0)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+#
+# # cv.drawContours(img, contours, -1, (0, 255, 0), 1)
+# # cv.imshow("contours", img)
+# # cv.waitKey(0)
+# # cv.destroyAllWindows()
+#
+# cnt = contours[1]
+# m = cv.moments(cnt)
+# print(m)
+#
+# cx = int(m["m10"] / m["m00"])                                        # 中心点x
+# cy = int(m["m01"] / m["m00"])                                        # 中心点y
+# print("轮廓中心点坐标：", cx, cy)
+#
+# area = cv.contourArea(cnt)                                           # 轮廓面积
+# print("轮廓面积：", area)
+#
+# perimeter = cv.arcLength(cnt, True)                                  # 轮廓周长
+# print("轮廓周长：", perimeter)
+#
+# img = cv.imread("bad_rect.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, 0)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+# approx_1 = cv.approxPolyDP(cnt,                                      # 轮廓近似
+#                            0.1 * cv.arcLength(cnt, True),            # 原本轮廓到近似轮廓的最大距离
+#                            True)                                     # 指定曲线是否闭合
+# approx_2 = cv.approxPolyDP(cnt, 0.01 * cv.arcLength(cnt, True), True)
+#
+# img = cv.imread("bad_rect.png")
+# cv.drawContours(img, [cnt], -1, (0, 255, 0), 2)
+# cv.imshow("contours", img)
+#
+# img = cv.imread("bad_rect.png")
+# cv.drawContours(img, [approx_1], -1, (0, 255, 0), 2)
+# cv.imshow("approx_1", img)
+#
+# img = cv.imread("bad_rect.png")
+# cv.drawContours(img, [approx_2], -1, (0, 255, 0), 2)
+# cv.imshow("approx_2", img)
+#
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 凸包------------------------------------------------------------------------------------------------------------------
+# img = cv.imread("hand.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+#
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+# hull = cv.convexHull(cnt,
+#                      hull=None,
+#                      clockwise=None,                                 # True--顺时针，False--逆时针
+#                      returnPoints=None)                              # True--返回坐标值，False--返回点在轮廓中的索引
+#
+# img = cv.imread("hand.png")
+# cv.drawContours(img, [cnt], -1, (0, 255, 0), 2)
+# cv.imshow("contours", img)
+# img = cv.imread("hand.png")
+# cv.drawContours(img, [hull], -1, (0, 255, 0), 2)
+# cv.imshow("hull", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 检查凸度----------------------------------------------------------------------------------------------------------------
+# """cv.isContourConvex(cnt)，检查曲线是否是凸性"""
+# img = cv.imread("hand.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+# print(cv.isContourConvex(cnt))
+
+
+# # 边界矩形----------------------------------------------------------------------------------------------------------------
+# img = cv.imread("hand.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+#
+# img = cv.imread("hand.png")
+# x, y, w, h = cv.boundingRect(cnt)                                    # 垂直边界矩形
+# tmp = np.asarray([[[x, y], [x + w, y], [x + w, y + h], [x, y + h]]])
+# cv.drawContours(img, tmp, -1, (0, 255, 0), 2)
+# # 旋转边界矩形
+# rect = cv.minAreaRect(cnt)                                           # 旋转边界矩形，最小外接矩形
+# box = cv.boxPoints(rect)                                             # 查找旋转矩形的四个顶点
+# box = np.int0(box)
+# cv.drawContours(img, [box], -1, (0, 0, 255), 2)
+# cv.imshow("外接矩形", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 最小外接圆--------------------------------------------------------------------------------------------------------------
+# img = cv.imread("hand.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+#
+# (x, y), radius = cv.minEnclosingCircle(cnt)
+# center = (int(x), int(y))
+# radius = int(radius)
+# cv.circle(img, center, radius, (255, 0, 0), 2)
+# cv.imshow("最小外接圆", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 拟合椭圆----------------------------------------------------------------------------------------------------------------
+# img = cv.imread("hand.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+#
+# ellipse = cv.fitEllipse(cnt)
+# cv.ellipse(img, ellipse, (255, 0, 0), 2)                             # 第二种用法，ellipse传入tuple，包含椭圆所有信息
+# cv.imshow("拟合椭圆", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 拟合直线----------------------------------------------------------------------------------------------------------------
+# img = cv.imread("hand.png")
+# rows, cols, _ = img.shape
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+#
+# vx, vy, x, y = cv.fitLine(cnt, cv.DIST_L2, 0, 0.01, 0.01)
+# lefty = int((-x * vy / vx) + y)
+# righty = int(((cols - x) * vy / vx) + y)
+# cv.line(img, (cols - 1, righty), (0, lefty), (0, 255, 0), 2)
+# cv.imshow("拟合直线", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 轮廓更多功能------------------------------------------------------------------------------------------------------------
+#
+#
+# def get_foot_point(point, line_p1, line_p2):
+#     """
+#         找垂足
+#         @point, line_p1, line_p2 : [x, y]
+#         """
+#     x0, y0 = point
+#     x1, y1 = line_p1
+#     x2, y2 = line_p2
+#
+#     k = -((x1 - x0) * (x2 - x1) + (y1 - y0) * (y2 - y1)) / ((x2 - x1) ** 2 + (y2 - y1) ** 2) * 1.0
+#
+#     xn = k * (x2 - x1) + x1
+#     yn = k * (y2 - y1) + y1
+#
+#     return xn, yn
+#
+#
+# img = cv.imread("hand.png")
+# rows, cols, _ = img.shape
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+#
+# hull = cv.convexHull(cnt,                                            # 检测凸度缺陷
+#                      returnPoints=False)                             # 必须设置为False，以便于寻找凸缺陷
+# defects = cv.convexityDefects(cnt,                                   # 轮廓
+#                               hull)                                  # 凸包
+#                                                                      # 返回起点，终点，最远点，到最远点的近似距离，其中前三个值是在轮廓中的索引
+#
+# for i in range(defects.shape[0]):
+#     s, e, f, d = defects[i, 0]
+#     start = tuple(cnt[s][0])
+#     end = tuple(cnt[e][0])
+#     far = tuple(cnt[f][0])
+#     foot = get_foot_point(far, start, end)                           # 找到垂足
+#     cv.line(img, start, end, [0, 255, 0], 2)
+#     cv.line(img, far, (int(foot[0]), int(foot[1])), [0, 0, 255], 2)  # cv.circle(img, far, 5, [0, 0, 255], -1)
+# cv.imshow("检测轮廓缺陷", img)
+# cv.waitKey(0)
+# cv.destroyAllWindows()
+
+
+# # 点与轮廓的最短距离-------------------------------------------------------------------------------------------------------
+# img = cv.imread("hand.png")
+# ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, hierarchy = cv.findContours(thresh, 1, 2)
+# cnt = contours[0]
+#
+# dist = cv.pointPolygonTest(cnt,                                      # 轮廓
+#                            (50, 50),                                 # 点的坐标
+#                            True)  # 如果为True，则找到带符号的距离。如果为False，它将查找该点是在轮廓内部还是外部或轮廓上（分别返回+ 1，-1、0）
+# print(dist)
+
+
+# # 形状匹配---------------------------------------------------------------------------------------------------------------
+# """cv.matchShapes（），使我们能够比较两个形状或两个轮廓，并返回显示相似度的度量。结果越低，匹配越好"""
+# star_a = cv.imread("stara.png")
+# _, thresh = cv.threshold(cv.cvtColor(star_a, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, _ = cv.findContours(thresh, 1, 2)
+# cnt_a = contours[2]
+#
+# star_b = cv.imread("starb.png")                                      # 图形即使旋转对形状影响较小
+# _, thresh = cv.threshold(cv.cvtColor(star_b, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, _ = cv.findContours(thresh, 1, 2)
+# cnt_b = contours[3]
+#
+# rect_c = cv.imread("rectc.png")
+# _, thresh = cv.threshold(cv.cvtColor(rect_c, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
+# contours, _ = cv.findContours(thresh, 1, 2)
+# cnt_c = contours[0]
+#
+# print(cv.matchShapes(cnt_a, cnt_b, 1, 0.0))                          # a和b的形状差异度
+# print(cv.matchShapes(cnt_a, cnt_c, 1, 0.0))                          # a和c的形状差异度
