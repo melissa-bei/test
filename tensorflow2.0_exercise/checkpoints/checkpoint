@@ -1,0 +1,6 @@
+model_checkpoint_path: "liner.ckpt-19"
+all_model_checkpoint_paths: "liner.ckpt-11"
+all_model_checkpoint_paths: "liner.ckpt-13"
+all_model_checkpoint_paths: "liner.ckpt-15"
+all_model_checkpoint_paths: "liner.ckpt-17"
+all_model_checkpoint_paths: "liner.ckpt-19"
