@@ -16,7 +16,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # # opencv中的轮廓----------------------------------------------------------------------------------------------------------
 # """cv.findContours(), cv.drawContours()"""
-# img = cv.resize(cv.imread("meow2.png"), (1024, 1024))
+# img = cv.resize(cv.imread("images/meow2.png"), (1024, 1024))
 # img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 # ret, thresh = cv.threshold(img_gray, 127, 255, 0)
 # contours, hierarchy = cv.findContours(thresh,                        # 检索轮廓
@@ -36,7 +36,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 轮廓特征----------------------------------------------------------------------------------------------------------------
-# img = cv.imread("star.png")
+# img = cv.imread("images/star.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, 0)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 #
@@ -59,7 +59,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # perimeter = cv.arcLength(cnt, True)                                  # 轮廓周长
 # print("轮廓周长：", perimeter)
 #
-# img = cv.imread("bad_rect.png")
+# img = cv.imread("images/bad_rect.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, 0)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 # cnt = contours[0]
@@ -68,15 +68,15 @@ plt.rcParams['axes.unicode_minus'] = False
 #                            True)                                     # 指定曲线是否闭合
 # approx_2 = cv.approxPolyDP(cnt, 0.01 * cv.arcLength(cnt, True), True)
 #
-# img = cv.imread("bad_rect.png")
+# img = cv.imread("images/bad_rect.png")
 # cv.drawContours(img, [cnt], -1, (0, 255, 0), 2)
 # cv.imshow("contours", img)
 #
-# img = cv.imread("bad_rect.png")
+# img = cv.imread("images/bad_rect.png")
 # cv.drawContours(img, [approx_1], -1, (0, 255, 0), 2)
 # cv.imshow("approx_1", img)
 #
-# img = cv.imread("bad_rect.png")
+# img = cv.imread("images/bad_rect.png")
 # cv.drawContours(img, [approx_2], -1, (0, 255, 0), 2)
 # cv.imshow("approx_2", img)
 #
@@ -85,7 +85,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 凸包------------------------------------------------------------------------------------------------------------------
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 #
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
@@ -95,10 +95,10 @@ plt.rcParams['axes.unicode_minus'] = False
 #                      clockwise=None,                                 # True--顺时针，False--逆时针
 #                      returnPoints=None)                              # True--返回坐标值，False--返回点在轮廓中的索引
 #
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # cv.drawContours(img, [cnt], -1, (0, 255, 0), 2)
 # cv.imshow("contours", img)
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # cv.drawContours(img, [hull], -1, (0, 255, 0), 2)
 # cv.imshow("hull", img)
 # cv.waitKey(0)
@@ -107,7 +107,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # # 检查凸度----------------------------------------------------------------------------------------------------------------
 # """cv.isContourConvex(cnt)，检查曲线是否是凸性"""
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 # cnt = contours[0]
@@ -115,12 +115,12 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 边界矩形----------------------------------------------------------------------------------------------------------------
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 # cnt = contours[0]
 #
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # x, y, w, h = cv.boundingRect(cnt)                                    # 垂直边界矩形
 # tmp = np.asarray([[[x, y], [x + w, y], [x + w, y + h], [x, y + h]]])
 # cv.drawContours(img, tmp, -1, (0, 255, 0), 2)
@@ -135,7 +135,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 最小外接圆--------------------------------------------------------------------------------------------------------------
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 # cnt = contours[0]
@@ -150,7 +150,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 拟合椭圆----------------------------------------------------------------------------------------------------------------
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 # cnt = contours[0]
@@ -163,7 +163,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 拟合直线----------------------------------------------------------------------------------------------------------------
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # rows, cols, _ = img.shape
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
@@ -198,7 +198,7 @@ plt.rcParams['axes.unicode_minus'] = False
 #     return xn, yn
 #
 #
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # rows, cols, _ = img.shape
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
@@ -224,7 +224,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 
 # # 点与轮廓的最短距离-------------------------------------------------------------------------------------------------------
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
 # cnt = contours[0]
@@ -237,17 +237,17 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # # 形状匹配---------------------------------------------------------------------------------------------------------------
 # """cv.matchShapes（），使我们能够比较两个形状或两个轮廓，并返回显示相似度的度量。结果越低，匹配越好"""
-# star_a = cv.imread("stara.png")
+# star_a = cv.imread("images/stara.png")
 # _, thresh = cv.threshold(cv.cvtColor(star_a, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, _ = cv.findContours(thresh, 1, 2)
 # cnt_a = contours[2]
 #
-# star_b = cv.imread("starb.png")                                      # 图形即使旋转对形状影响较小
+# star_b = cv.imread("images/starb.png")                                      # 图形即使旋转对形状影响较小
 # _, thresh = cv.threshold(cv.cvtColor(star_b, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, _ = cv.findContours(thresh, 1, 2)
 # cnt_b = contours[3]
 #
-# rect_c = cv.imread("rectc.png")
+# rect_c = cv.imread("images/rectc.png")
 # _, thresh = cv.threshold(cv.cvtColor(rect_c, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, _ = cv.findContours(thresh, 1, 2)
 # cnt_c = contours[0]
@@ -260,7 +260,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # # represents the distance from all pixels to the white curve on it. All pixels inside curve is blue depending on the
 # # distance. Similarly outside points are red. Contour edges are marked with White. So problem is simple. Write a code
 # # to create such a representation of distance.
-# img = cv.imread("hand.png")
+# img = cv.imread("images/hand.png")
 # rows, cols, _ = img.shape
 # ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY_INV)
 # contours, hierarchy = cv.findContours(thresh, 1, 2)
@@ -329,7 +329,7 @@ cv.RETR_CCOMP：                 生成二级轮廓，外圈为第一层级，�
 cv.RETR_EXTERNAL：              仅返回最外层轮廓，也就没有父轮廓和子轮廓，只有兄弟轮廓
 0的编号有疑问
 """
-img = 255 - cv.imread("contours.png")
+img = 255 - cv.imread("images/contours.png")
 ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY)
 
 contours, hierarchy = cv.findContours(thresh, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
@@ -348,7 +348,7 @@ print("父轮廓:", hierarchy)
 # cv.waitKey(0)
 # cv.destroyAllWindows()
 
-img = 255 - cv.imread("contours2.png")
+img = 255 - cv.imread("images/contours2.png")
 ret, thresh = cv.threshold(cv.cvtColor(img, cv.COLOR_BGR2GRAY), 127, 255, cv.THRESH_BINARY)
 contours, hierarchy = cv.findContours(thresh,
                                       cv.RETR_CCOMP,

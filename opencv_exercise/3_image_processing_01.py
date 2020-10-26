@@ -11,7 +11,7 @@ import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 # 解决中文显示问题
-plt.rcParams['font.sans-serif']=['SimHei']
+plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 # # 改变色彩空间------------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # # homework: Try to find a way to extract more than one colored objects,
 # #           for eg, extract red, blue, green objects simultaneously.
 # # 可以分别生成B、G、R的掩码，然后对三个掩码求并集
-# img = cv.imread("opencv.jpg")
+# img = cv.imread("images/opencv.jpg")
 # hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 #
 # mask_b = cv.bitwise_or(cv.inRange(hsv, np.array([170, 50, 50]), np.array([180, 255, 255])),
@@ -88,7 +88,7 @@ cv.warpAffine：       仿射变换，采用2x3的转换矩阵
 cv.warpPerspective：  透视变换，采用3x3的转换矩阵
 """
 # Scaling，缩放
-img = cv.imread("opencv.jpg")
+img = cv.imread("images/opencv.jpg")
 
 resize1 = cv.resize(img,
                     None,
@@ -126,7 +126,7 @@ rotation = cv.warpAffine(img, M, (cols, rows))
 
 # Affine Transformation仿射变换
 """在仿射变换中，原始图像中的所有平行线在输出图像中仍将平行"""
-grid = cv.imread("grid.png")
+grid = cv.imread("images/grid.png")
 rows, cols = grid.shape[:2]
 
 pts1 = np.float32([[50, 50], [200, 50], [50, 200]])                  # 变换前的点
@@ -145,7 +145,7 @@ for _, pt in enumerate(pts2):
 """
 透视变换需要3x3的变换矩阵，变换后直线仍是直线
 """
-chessboard = cv.imread("chessboard.jpg")
+chessboard = cv.imread("images/chessboard.jpg")
 rows, cols = chessboard.shape[:2]
 
 pts1 = np.float32([[110, 92], [405, 75], [131, 285], [413, 270]])    # 变换前的点

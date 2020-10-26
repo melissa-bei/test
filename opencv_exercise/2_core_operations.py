@@ -14,7 +14,7 @@ import time
 
 
 # # 图像的基本操作-----------------------------------------------------------------------------------------------------------
-# img = cv.imread("meow.jpg")
+# img = cv.imread("images/meow.jpg")
 #
 # # 访问和修改像素
 # px = img[100, 100]
@@ -52,7 +52,7 @@ import time
 # cv.destroyAllWindows()
 #
 # # 给图像padding
-# img = cv.imread("meow.jpg")[:, :, ::-1]
+# img = cv.imread("images/meow.jpg")[:, :, ::-1]
 # replicate = cv.copyMakeBorder(img,                                   # 源图像
 #                               100,                                   # top padding size
 #                               100,                                   # bottom padding size
@@ -87,8 +87,8 @@ import time
 # print(x + y)         # -->[4]，250 + 10 = 260 % 256 = 4，numpy的加法是模运算
 #
 # # 图像融合
-# img1 = cv.imread("meow.png")[600:1100, 200:700, :]
-# img2 = cv.resize(cv.imread("meow2.png"), (500, 500))
+# img1 = cv.imread("images/meow.png")[600:1100, 200:700, :]
+# img2 = cv.resize(cv.imread("images/meow2.png"), (500, 500))
 # dst = cv.addWeighted(img1,                                           # 源图像1
 #                      0.7,                                            # 比例
 #                      img2,                                           # 源图像2
@@ -99,8 +99,8 @@ import time
 # cv.destroyAllWindows()
 #
 # # 位操作
-# img1 = cv.imread("opencv.jpg") + 1
-# img2 = cv.imread("meow2.png")
+# img1 = cv.imread("images/opencv.jpg") + 1
+# img2 = cv.imread("images/meow2.png")
 #
 # rows, cols, channels = img1.shape
 # roi = img2[:rows, :cols]                                             # ROI区域
@@ -120,8 +120,8 @@ import time
 # cv.destroyAllWindows()
 
 # # homework:Create a slide show of images in a folder with smooth transition between images using cv.addWeighted function
-# img1 = cv.imread("meow.png")[100:600, 200:700, :]
-# img2 = cv.resize(cv.imread("meow2.png"), (500, 500))
+# img1 = cv.imread("images/meow.png")[100:600, 200:700, :]
+# img2 = cv.resize(cv.imread("images/meow2.png"), (500, 500))
 #
 # ratios = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
 #
@@ -137,7 +137,7 @@ import time
 # 衡量性能和改进技术，衡量代码效率--------------------------------------------------------------------------------------------
 """cv.getTickCount()，cv.getTickFrequency()等。"""
 """cv.getTickCount函数返回从参考事件到调用此函数时的时钟周期数。如果在函数执行前和执行后调用它则会获得用域函数执行的时钟数周期"""
-img1 = cv.imread("meow.png")[100:600, 200:700, :]
+img1 = cv.imread("images/meow.png")[100:600, 200:700, :]
 
 e1 = cv.getTickCount()
 e3 = time.time()
@@ -155,7 +155,7 @@ print(e4-e3)                                                         # 与上面
 print(cv.useOptimized())
 """
 Console:
-img1 = cv.imread("opencv_exercise/meow.png")[100:600, 200:700, :]
+img1 = cv.imread("opencv_exercise/images/meow.png")[100:600, 200:700, :]
 %timeit res = cv.medianBlur(img1, 49)
 39.9 ms ± 454 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 """
@@ -187,7 +187,7 @@ z = np.uint8([5])
 # Python标量运算比Numpy标量运算快。因此，对于包含一两个元素的运算，Python标量比Numpy数组好。数组大小稍大时，Numpy会占优势。
 """
 Console:
-img1 = cv.imread("opencv_exercise/meow.png", 0)[100:600, 200:700]
+img1 = cv.imread("opencv_exercise/images/meow.png", 0)[100:600, 200:700]
 %timeit z = cv.countNonZero(img1)                                              ---->faster
 42.4 µs ± 2.38 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 %timeit z = np.count_nonzero(img1)

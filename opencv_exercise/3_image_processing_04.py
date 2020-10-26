@@ -18,7 +18,7 @@ plt.rcParams["axes.unicode_minus"] = False
 # """cv.calcHist（），np.histogram（），绘制灰度直方图
 # cv.calcHist > np.bincount > np.histogram
 # """
-# img = cv.imread("rock.png", 0)
+# img = cv.imread("images/rock.png", 0)
 #
 # # 计算直方图
 # hist = cv.calcHist([img],                                            # 单通道还是多通道图像都必须放在方括号内
@@ -33,7 +33,7 @@ plt.rcParams["axes.unicode_minus"] = False
 # # 绘制直方图
 # plt.hist(img.ravel(), 256, [0, 256]), plt.show()                     # 1.使用plt.hist
 #
-# img = cv.imread("rock.png")[:, :, ::-1]
+# img = cv.imread("images/rock.png")[:, :, ::-1]
 # color = ("b", "g", "r")
 # for i, col in enumerate(color):                                      # 2.使用cv.calcHist和plt.plot
 #     histc = cv.calcHist([img], [i], None, [256], [0, 256])
@@ -56,7 +56,7 @@ plt.rcParams["axes.unicode_minus"] = False
 #
 #
 # # 直方图均衡--------------------------------------------------------------------------------------------------------------
-# img = cv.imread("foggy.png", 0)
+# img = cv.imread("images/foggy.png", 0)
 #
 # hist, bins = np.histogram(img.flatten(), 256, [0, 256])
 #
@@ -81,7 +81,7 @@ plt.rcParams["axes.unicode_minus"] = False
 # plt.imshow(np.hstack([img, equ]), cmap="gray"), plt.xticks([]), plt.yticks([])
 # plt.show()
 #
-# img = cv.imread("sculpture.png", 0)
+# img = cv.imread("images/sculpture.png", 0)
 # equ = cv.equalizeHist(img)
 # CLAHE = cv.createCLAHE(                                              # 对比度受限的自适应直方图均衡
 #     clipLimit=2.0,                                                   # 截断比例
@@ -93,7 +93,7 @@ plt.rcParams["axes.unicode_minus"] = False
 #
 #
 # # 绘制二维直方图，通常用于查找颜色直方图，包含色相和饱和度
-# img = cv.imread("meow2.png")
+# img = cv.imread("images/meow2.png")
 # hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 #
 # hist = cv.calcHist(img,
@@ -110,7 +110,7 @@ plt.rcParams["axes.unicode_minus"] = False
 #
 #
 # # 直方图反投影????????????????????????????????????????????????TODO:没有明白具体原理
-# target = cv.imread("rock.png")
+# target = cv.imread("images/rock.png")
 # hsvt = cv.cvtColor(target, cv.COLOR_BGR2HSV)                              # 目标图像hsv
 #
 # roi = target[:100, :300, :]
@@ -148,7 +148,7 @@ plt.rcParams["axes.unicode_minus"] = False
 
 # # 图像转换----------------------------------------------------------------------------------------------------------------
 # """cv.dft(), cv.idft()傅里叶变换和傅里叶逆变换"""
-# img = cv.imread("messi.png", 0)
+# img = cv.imread("images/messi.png", 0)
 # fft = np.fft.fft2(img)                                                 # numpy中傅里叶变换
 # # np.fft.fft2默认返回结果零频率分量是位于左上角要使其居中则要偏移一半可以用np.fft.fftshift()来实现
 # fftshift = np.fft.fftshift(fft)
@@ -216,7 +216,7 @@ plt.rcParams["axes.unicode_minus"] = False
 # """DFT性能优化，矩阵大小为2的幂时是最快的，大小为2、3、5乘积的数组也得到了有效处理，为了提高代码性能，再找到DFT之前通过补零将数组修改为最佳大小，
 # 在opencv中必须手动补零，在numpy中可以指定FFT计算的新的尺寸来自动补零，opencv提供了getOptimalDFTSize()，来配合cv.dft()和np.fft.fft2()"""
 # """在Console中检测性能
-# img = cv.imread('messi.png',0)
+# img = cv.imread('images/messi.png',0)
 # rows,cols = img.shape
 # print("{} {}".format(rows,cols))
 # 353 500

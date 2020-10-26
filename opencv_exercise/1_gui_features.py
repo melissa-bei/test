@@ -15,7 +15,7 @@ import numpy as np
 # # 图像入门---------------------------------------------------------------------------------------------------------------
 # """cv.imread()，cv.imshow()，cv.imwrite()"""
 # # 加载彩色灰度图像
-# img = cv.imread("meow.jpg")                                       # 路径有问题时会返回None
+# img = cv.imread("images/meow.jpg")                                       # 路径有问题时会返回None
 #
 # # 显示图像
 # # cv.imshow("image", img)
@@ -27,7 +27,7 @@ import numpy as np
 # k = cv.waitKey(0) & 0xFF                                             # 获取敲击的键
 # if k == ord("s"):
 #     # 保存图像
-#     cv.imwrite("meow.png", img)
+#     cv.imwrite("images/meow.png", img)
 # cv.destroyWindow("image")
 #
 # # 使用matplotlib，python自带的画图的包

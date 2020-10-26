@@ -45,7 +45,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # plt.show()
 #
 # # 自适应阈值，局部阈值
-# img = cv.imread("sudoku.png", 0)
+# img = cv.imread("images/sudoku.png", 0)
 # img = cv.medianBlur(img, 5)
 #
 # _, threshold1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)
@@ -137,7 +137,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # """学习各种低通滤波来模糊图像，cv.filter2D()
 # 低通滤波用于去噪模糊等，高通滤波用于找到图像边缘
 # """
-# img = cv.imread("meow.jpg")[:, :, ::-1]
+# img = cv.imread("images/meow.jpg")[:, :, ::-1]
 #
 # kernel = np.ones((5, 5), np.float32) / 25
 # dst = cv.filter2D(img,                                               # 二维卷积
@@ -189,7 +189,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # # 形态转换----------------------------------------------------------------------------------------------------------------
 # """cv.erode(), cv.dilate(), cv.morphologyEx()"""
-# img = cv.imread("j.png")
+# img = cv.imread("images/j.png")
 # kernel = np.ones((5, 5), np.uint8)
 #
 # erosion = cv.erode(img,                                              # 腐蚀
@@ -206,24 +206,24 @@ plt.rcParams['axes.unicode_minus'] = False
 # plt.imshow(np.hstack([img, gradient])), plt.title("Gradient"), plt.xticks([]), plt.yticks([])
 # plt.show()
 #
-# img = cv.imread("j1.png")
+# img = cv.imread("images/j1.png")
 # opening = cv.morphologyEx(img,
 #                           cv.MORPH_OPEN,                             # 开运算：先腐蚀再膨胀，能够去除细小点
 #                           kernel)                                    # 迭代次数不为1时，是腐蚀->腐蚀->膨胀->膨胀
 # plt.imshow(np.hstack([img, opening])), plt.title("Opening"), plt.xticks([]), plt.yticks([])
 # plt.show()
 #
-# img = cv.imread("j1.png")
+# img = cv.imread("images/j1.png")
 # tophat = cv.morphologyEx(img, cv.MORPH_TOPHAT, kernel)               # 顶帽，原图像与开运算之差
 # plt.imshow(np.hstack([img, tophat])), plt.title("Top Hat"), plt.xticks([]), plt.yticks([])
 # plt.show()
 #
-# img = cv.imread("j2.png")
+# img = cv.imread("images/j2.png")
 # closing = cv.morphologyEx(img, cv.MORPH_CLOSE, kernel)               # 闭运算：先膨胀再腐蚀，能够去除孔洞
 # plt.imshow(np.hstack([img, closing])), plt.title("Closing"), plt.xticks([]), plt.yticks([])
 # plt.show()
 #
-# img = cv.imread("j2.png")
+# img = cv.imread("images/j2.png")
 # blackhat = cv.morphologyEx(img, cv.MORPH_BLACKHAT, kernel)           # 黑帽，闭运算与原图像之差
 # plt.imshow(np.hstack([img, blackhat])), plt.title("Black Hat"), plt.xticks([]), plt.yticks([])
 # plt.show()
@@ -240,7 +240,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # # 图像梯度---------------------------------------------------------------------------------------------------------------
 # """cv.Sobel（），cv.Scharr（），cv.Laplacian（）"""
 # # sobel算子是高斯平滑家微分运算的联合，更耐噪声
-# img = cv.imread("meow.jpg", 0)
+# img = cv.imread("images/meow.jpg", 0)
 #
 # laplacian = cv.Laplacian(img, cv.CV_64F)                             # 64位浮点数
 # sobel_x = cv.Sobel(img,                                              #
@@ -277,7 +277,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # 3.非极大值抑制，
 # 4.阈值界定，需要设置最小阈值和最大阈值，梯度大于最大阈值的必是边缘，小于最小阈值的必定是非边缘，在最大最小阈值之间的连接到边缘的为边缘，没连接的是非边缘。
 # """
-# img = cv.imread("meow.png", 0)
+# img = cv.imread("images/meow.png", 0)
 # edges = cv.Canny(img,
 #                  100,                                                # minVal
 #                  200,                                                # maxVal
@@ -301,7 +301,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # cv.createTrackbar("High Threshold", "Canny edges detection", 0, 255, nothing)
 #
 #
-# img = cv.imread("messi.png", 0)
+# img = cv.imread("images/messi.png", 0)
 # edges = np.zeros_like(img)
 # while True:
 #     cv.imshow("Canny edges detection", np.hstack([img, edges]))
@@ -332,15 +332,15 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # 图像金字塔--------------------------------------------------------------------------------------------------------------
 """cv.pyrUp（），cv.pyrDown（）"""
-img = cv.imread("messi.png")[:, :, ::-1]
+img = cv.imread("images/messi.png")[:, :, ::-1]
 plt.imshow(img), plt.title("Original"), plt.show()
 lower_reso = cv.pyrDown(img)
 higher_reso = cv.pyrUp(lower_reso)
 plt.imshow(lower_reso), plt.title("lower"), plt.show()
 plt.imshow(higher_reso), plt.title("higher"), plt.show()
 
-apple = cv.imread("apple.png")[:, :, ::-1]
-orange = cv.imread("orange.png")[:, :, ::-1]
+apple = cv.imread("images/apple.png")[:, :, ::-1]
+orange = cv.imread("images/orange.png")[:, :, ::-1]
 
 # 生成apple的高斯金字塔
 G = apple.copy()
