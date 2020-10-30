@@ -1,0 +1,6 @@
+E:\newbie\Exercise\test\revit_exercise\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+E:\newbie\Exercise\test\revit_exercise\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+E:\newbie\Exercise\test\revit_exercise\ClassLibrary1\obj\Debug\ClassLibrary1.csprojAssemblyReference.cache
+E:\newbie\Exercise\test\revit_exercise\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.CoreCompileInputs.cache
+E:\newbie\Exercise\test\revit_exercise\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+E:\newbie\Exercise\test\revit_exercise\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

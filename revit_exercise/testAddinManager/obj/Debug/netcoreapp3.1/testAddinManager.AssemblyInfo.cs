@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("testAddinManager")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("TestAddinManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("testAddinManager")]
-[assembly: System.Reflection.AssemblyTitleAttribute("testAddinManager")]
+[assembly: System.Reflection.AssemblyProductAttribute("TestAddinManager")]
+[assembly: System.Reflection.AssemblyTitleAttribute("TestAddinManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。

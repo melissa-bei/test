@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lXKZjykwmwLtSU2KDkkrwn0JYbHxR2kyKZyNrLD86AvJK3+ZUsHyxVDA9uTpOLqsrCPwlLIjU37JqDu7eDhiAQ==",
+  "dgSpecHash": "MTA57XIieGcAkRjtJ4a3Eg0PfkFV+h5VUTPyU+86bOLK7sWmks8pKBjxzoYREuuFFVd6oDVqfWHrz5DKAiDmRg==",
   "success": true,
-  "projectFilePath": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\testAddinManager.csproj",
+  "projectFilePath": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\TestAddinManager.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

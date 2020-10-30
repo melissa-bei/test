@@ -8,7 +8,7 @@ namespace testAddinManager
         /// <summary>
         /// This method initiates a custom export process for a given 3D view.
         /// </summary>
-        internal void Export(Document document, View a3DView) //主函数
+        protected void Export(Document document, View a3DView) //主函数
         {
             MyExportContext context = new MyExportContext(document);
 

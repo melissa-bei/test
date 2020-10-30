@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\testAddinManager.csproj": {}
+    "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\TestAddinManager.csproj": {}
   },
   "projects": {
-    "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\testAddinManager.csproj": {
+    "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\TestAddinManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\testAddinManager.csproj",
-        "projectName": "testAddinManager",
-        "projectPath": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\testAddinManager.csproj",
+        "projectUniqueName": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\TestAddinManager.csproj",
+        "projectName": "TestAddinManager",
+        "projectPath": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\TestAddinManager.csproj",
         "packagesPath": "C:\\Users\\lib\\.nuget\\packages\\",
         "outputPath": "E:\\newbie\\Exercise\\test\\revit_exercise\\testAddinManager\\obj\\",
         "projectStyle": "PackageReference",

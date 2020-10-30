@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace testAddinManager
+namespace TestAddinManager
 {
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     public class CmdMain : IExternalCommand
@@ -221,5 +221,3 @@ namespace testAddinManager
         }
     }
 }
-
-
