@@ -1,6 +1,0 @@
-E:\newbie\Exercise\test\revit_exercise\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
-E:\newbie\Exercise\test\revit_exercise\ConsoleApp2\bin\Debug\ConsoleApp2.exe
-E:\newbie\Exercise\test\revit_exercise\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
-E:\newbie\Exercise\test\revit_exercise\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
-E:\newbie\Exercise\test\revit_exercise\ConsoleApp2\obj\Debug\ConsoleApp2.exe
-E:\newbie\Exercise\test\revit_exercise\ConsoleApp2\obj\Debug\ConsoleApp2.pdb

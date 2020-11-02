@@ -1,9 +1,0 @@
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\bin\Debug\netcoreapp3.1\testAddinManager.deps.json
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\bin\Debug\netcoreapp3.1\testAddinManager.dll
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\bin\Debug\netcoreapp3.1\testAddinManager.pdb
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\obj\Debug\netcoreapp3.1\testAddinManager.AssemblyInfoInputs.cache
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\obj\Debug\netcoreapp3.1\testAddinManager.AssemblyInfo.cs
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\obj\Debug\netcoreapp3.1\testAddinManager.csproj.CoreCompileInputs.cache
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\obj\Debug\netcoreapp3.1\testAddinManager.dll
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\obj\Debug\netcoreapp3.1\testAddinManager.pdb
-E:\newbie\Exercise\test\revit_exercise\testAddinManager\obj\Debug\netcoreapp3.1\TestAddinManager.csprojAssemblyReference.cache
