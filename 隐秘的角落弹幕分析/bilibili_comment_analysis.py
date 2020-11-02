@@ -15,7 +15,10 @@
 6.看到第四阶段就很ok了。
 7.读代码过程中如果有理解不了的单词（也就是接口），一般都是导的别的包的函数，不用深究里面是怎么实现的，只需要了解我给它输入什么就能用它得到输出
 
-注：这里处理出的一些效果由于包本身的特性，所以不在pycharm中显示，另外保存成了文件，就在当前目录下
+注：1.这里处理出的一些效果由于包本身的特性，所以不在pycharm中显示，另外保存成了文件，就在当前目录下;
+   2."danmu2.csv"这个文件中数据量比较大可能运行速度比较慢，可以取一部份数据进行处理。
+   3.需要注意这段代码只读取了数据进行处理，并没有重新保存成excel文件，可以探索一下。
+   4.在这个文件熟悉的基础上，可以换一个excel文件进行处理，仿照这个文件去写处理流程，函数用法基本相同，不同的地方是在于取哪一列或者哪几列数据进行处理，需要注意修改列标题。
 ================================================="""
 
 # 导包
@@ -44,7 +47,7 @@ print(df.info())                                           # 显示df的一些�
 # 第二阶段----------------------------------------------------------------------------------------------------------------
 # 累计用户发送的弹幕数，以了解哪些用户比较活跃
 """uid是用户id，contentsId，要实现上述目的，需要先将所有弹幕按照用户id分组，然后统计每个用户所发的弹幕数。
-   第36行代码最后把统计出的结果由大到小进行了排序"""
+   第51行代码最后把统计出的结果由大到小进行了排序"""
 danmu_counts = df.groupby('uid')['contentsId'].count().sort_values(ascending=False).reset_index()
 danmu_counts.columns = ['用户id', '累计发送弹幕数']
 print(danmu_counts.head())
@@ -76,7 +79,7 @@ bar0.render("弹幕发射器.html")  # 设置保存的html文件的名称，不�
 
 # 统计df中每条弹幕的点赞数，以了解大家都对什么哪些弹幕比较认同
 df_like = df[df.groupby(['tv_name'])['likeCount'].rank(method="first", ascending=False) == 1].reset_index()[
-    ['tv_name', 'contents', 'likeCount']]                           # 仿照第36行阅读
+    ['tv_name', 'contents', 'likeCount']]                           # 仿照第51行阅读
 df_like.columns = ['剧集', '弹幕', '赞']
 print(df_like)
 
@@ -104,10 +107,10 @@ print(staff_count)
 
 # 用极坐标图显示
 a = ['朱朝阳', '叶军', '徐静', '叶驰敏', '朱永平', '周春红', '朱晶晶', '王瑶', '陈冠声', '严良', '普普', '张东升']
-b = [22, 47, 99, 125, 153, 583, 818, 1462, 1942, 5075, 5188, 5734]  # b与第93行统计出的结果相同，这里直接手动写入了
-# b = staff_count.values.tolist()                                   # 获取第93行的结果，把上面统计出来的pd.Series转化为list，与第100行作用相同
+b = [22, 47, 99, 125, 153, 583, 818, 1462, 1942, 5075, 5188, 5734]  # b与第105行统计出的结果相同，这里直接手动写入了
+# b = staff_count.values.tolist()                                   # 获取第105行的结果，把上面统计出来的pd.Series转化为list，与第110行作用相同
 
-Polar = Polar(init_opts=opts.InitOpts(width='960px', height='500px'))           # 参考第54行阅读
+Polar = Polar(init_opts=opts.InitOpts(width='960px', height='500px'))           # 参考第66行阅读
 Polar.add_schema(angleaxis_opts=opts.AngleAxisOpts(data=a, type_="category"))
 Polar.add("", b, type_="bar")
 Polar.set_global_opts(title_opts=opts.TitleOpts(title="弹幕中提到的主要演员"))
