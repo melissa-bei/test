@@ -54,7 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestAddinManager.cs" />
+    <Compile Include="CmdExportToJson.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="CmdPrintInfo.cs" />
+    <Compile Include="CmdDeleteElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
