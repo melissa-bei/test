@@ -36,10 +36,12 @@
     <Reference Include="RevitAddInUtility, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAddInUtility.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RevitNET, Version=20.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitNET.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
