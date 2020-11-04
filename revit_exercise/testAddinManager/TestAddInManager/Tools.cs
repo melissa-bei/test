@@ -41,5 +41,38 @@ namespace TestAddInManager
             }
             return selectElements;
         }
+
+        /// <summary>
+        /// 过滤激活视图中的所有墙
+        /// </summary>
+        /// <param name="commandData"></param>
+        /// <returns></returns>
+        public static List<Element> FilterAllWalls(ExternalCommandData commandData)
+        {
+            UIDocument uIDocument = commandData.Application.ActiveUIDocument;
+
+            ElementClassFilter wallsFilter = new ElementClassFilter(typeof(WallType));
+            FilteredElementCollector collector = new FilteredElementCollector(uIDocument.Document);
+            collector.WherePasses(wallsFilter);
+
+            //var query = from element in collector
+            //            where element.Name == "60\" x 30\" Student"
+            //            select element;
+
+            List<Element> selectElements = collector.Cast<Element>().ToList(); //query.Cast<Wall>().ToList()
+            return selectElements;
+        }
+
+        public static List<Element> FilterAllFloor(ExternalCommandData commandData)
+        {
+            UIDocument uIDocument = commandData.Application.ActiveUIDocument;
+
+            ElementClassFilter wallsFilter = new ElementClassFilter(typeof(Floor));
+            FilteredElementCollector collector = new FilteredElementCollector(uIDocument.Document);
+            collector.WherePasses(wallsFilter);
+
+            List<Element> selectElements = collector.Cast<Element>().ToList();
+            return selectElements;
+        }
     }
 }
