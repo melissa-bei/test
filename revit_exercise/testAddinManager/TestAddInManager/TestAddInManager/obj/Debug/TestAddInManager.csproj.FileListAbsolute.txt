@@ -1,0 +1,6 @@
+E:\test\revit_exercise\TestAddInManager\TestAddInManager\bin\Debug\TestAddInManager.dll
+E:\test\revit_exercise\TestAddInManager\TestAddInManager\bin\Debug\TestAddInManager.pdb
+E:\test\revit_exercise\TestAddInManager\TestAddInManager\obj\Debug\TestAddInManager.csproj.CoreCompileInputs.cache
+E:\test\revit_exercise\TestAddInManager\TestAddInManager\obj\Debug\TestAddInManager.dll
+E:\test\revit_exercise\TestAddInManager\TestAddInManager\obj\Debug\TestAddInManager.pdb
+E:\test\revit_exercise\testAddinManager\TestAddInManager\obj\Debug\TestAddInManager.csprojAssemblyReference.cache
