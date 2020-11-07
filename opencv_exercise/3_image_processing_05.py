@@ -155,59 +155,89 @@ plt.rcParams["axes.unicode_minus"] = False
 # plt.show()
 
 
-# 使用分水岭算法进行图像分割------------------------------------------------------------------------------------------------
-"""cv.watershed（），需要熟悉分水岭算法的逻辑以及原理"""
-img = cv.imread("images/coins.jpg")
-img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-# 利用OTSU分割确定前景和背景大概的位置
-ret, thresh = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU)
-plt.imshow(thresh, cmap="gray")
-plt.show()
-coins = cv.bitwise_and(img, img, mask=thresh)
-plt.imshow(coins[:, :, ::-1], cmap="gray")
-plt.show()
-# 利用腐蚀保留确定属于前景的部分，利用膨胀保留确定属于背景的部分，用背景部分减去前景部分可以得到剩下的边界部分
-# 但是不确定分界线在哪里，可以同意通过分水岭算法来找到分界线
-# 移除噪声
-kernel = np.ones((3, 3), np.uint8)
-opening = cv.morphologyEx(thresh, cv.MORPH_OPEN, kernel, iterations=2)
-plt.imshow(opening, cmap="gray")
-plt.show()
-# 膨胀保留确定的背景
-sure_bg = cv.dilate(opening, kernel, iterations=3)  # 0标记确定背景
-plt.imshow(sure_bg, cmap="gray")
-plt.show()
-# 确定的前景
-# distanceTransform函数的意义是做距离变换：距离变换的定义是计算一个图像中非零像素点到最近的零像素点的距离，也就是到零像素点的最短距离。
+# # 使用分水岭算法进行图像分割------------------------------------------------------------------------------------------------
+# """cv.watershed（），需要熟悉分水岭算法的逻辑以及原理"""
+# img = cv.imread("images/coins.jpg")
+# img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+# # 利用OTSU分割确定前景和背景大概的位置
+# ret, thresh = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU)
+# plt.imshow(thresh, cmap="gray")
+# plt.show()
+# coins = cv.bitwise_and(img, img, mask=thresh)
+# plt.imshow(coins[:, :, ::-1], cmap="gray")
+# plt.show()
+# # 利用腐蚀保留确定属于前景的部分，利用膨胀保留确定属于背景的部分，用背景部分减去前景部分可以得到剩下的边界部分
+# # 但是不确定分界线在哪里，可以同意通过分水岭算法来找到分界线
+# # 移除噪声
+# kernel = np.ones((3, 3), np.uint8)
+# opening = cv.morphologyEx(thresh, cv.MORPH_OPEN, kernel, iterations=2)
+# plt.imshow(opening, cmap="gray")
+# plt.show()
+# # 膨胀保留确定的背景
+# sure_bg = cv.dilate(opening, kernel, iterations=3)  # 0标记确定背景
+# plt.imshow(sure_bg, cmap="gray")
+# plt.show()
+# # 确定的前景
+# """distanceTransform函数的意义是做距离变换：距离变换的定义是计算一个图像中非零像素点到最近的零像素点的距离，也就是到零像素点的最短距离。
 # 距离变换的处理图像通常都是二值图像，而二值图像其实就是把图像分为两部分，即背景和物体两部分，物体通常又称为前景目标！
 # 通常我们把前景目标的灰度值设为255，即白色，背景的灰度值设为0，即黑色。所以定义中的非零像素点即为前景目标，零像素点即为背景。
-# 所以图像中前景目标中的像素点距离背景越远，那么距离就越大，如果我们用这个距离值替换像素值，那么新生成的图像中这个点越亮。
-dist_transform = cv.distanceTransform(opening, cv.DIST_L2, 5)
-plt.imshow(dist_transform, cmap="gray")
-plt.show()
-ret, sure_fg = cv.threshold(dist_transform, 0.7*dist_transform.max(), 255, 0)  # 用来去除不同对象之间重叠的边缘
-# 因为经过距离转换后，重叠部分离背景像素的距离更近，值也就更小，设定一定阈值可以过滤掉
-plt.imshow(sure_fg, cmap="gray")  # 1标记确定前景
-plt.show()
-# 找到不确定区域
-sure_fg = np.uint8(sure_fg)
-unknown = cv.subtract(sure_bg, sure_fg)  # 1标记不确定部分
-plt.imshow(unknown, cmap="gray")
-plt.show()
-# Marker labelling
-ret, markers = cv.connectedComponents(sure_fg)  # 确定前景的连通域分析，给每个连通域都进行编号，从0开始，相当于找到有几个对象
-# Add one to all labels so that sure background is not 0, but 1
-markers = markers + 1  # 给labels都加1，保证背景的编号是1，而不是0
-plt.imshow(markers, cmap="gray")
-plt.show()
-# Now, mark the region of unknown with zero
-markers[unknown == 255] = 0  # 把不确定部分标记为0
-plt.imshow(markers, cmap="gray")
-# 为什么上面的原始蓝色的，下面的圆是红色的？这是因为markers中传入的轮廓会被当作注水点，即分割中的种子点，因此需要不同编号
-plt.show()
-markers = cv.watershed(img, markers)  # 执行分水岭算法
-img[markers == -1] = [255, 0, 0]  # -1标记得到的边缘
-plt.imshow(img, cmap="gray")
-plt.show()
+# 所以图像中前景目标中的像素点距离背景越远，那么距离就越大，如果我们用这个距离值替换像素值，那么新生成的图像中这个点越亮。"""
+# dist_transform = cv.distanceTransform(opening, cv.DIST_L2, 5)
+# plt.imshow(dist_transform, cmap="gray")
+# plt.show()
+# ret, sure_fg = cv.threshold(dist_transform, 0.7*dist_transform.max(), 255, 0)  # 用来去除不同对象之间重叠的边缘
+# # 因为经过距离转换后，重叠部分离背景像素的距离更近，值也就更小，设定一定阈值可以过滤掉
+# plt.imshow(sure_fg, cmap="gray")  # 1标记确定前景
+# plt.show()
+# # 找到不确定区域
+# sure_fg = np.uint8(sure_fg)
+# unknown = cv.subtract(sure_bg, sure_fg)  # 1标记不确定部分
+# plt.imshow(unknown, cmap="gray")
+# plt.show()
+# # Marker labelling
+# ret, markers = cv.connectedComponents(sure_fg)  # 确定前景的连通域分析，给每个连通域都进行编号，从0开始，相当于找到有几个对象
+# # Add one to all labels so that sure background is not 0, but 1
+# markers = markers + 1  # 给labels都加1，保证背景的编号是1，而不是0
+# plt.imshow(markers, cmap="gray")
+# plt.show()
+# # Now, mark the region of unknown with zero
+# markers[unknown == 255] = 0  # 把不确定部分标记为0
+# plt.imshow(markers, cmap="gray")
+# # 为什么上面的原始蓝色的，下面的圆是红色的？这是因为markers中传入的轮廓会被当作注水点，即分割中的种子点，因此需要不同编号
+# plt.show()
+# markers = cv.watershed(img, markers)  # 执行分水岭算法
+# img[markers == -1] = [255, 0, 0]  # -1标记得到的边缘
+# plt.imshow(img, cmap="gray")
+# plt.show()
 
+
+# 使用GrabCut算法进行交互式前景提取-----------------------------------------------------------------------------------------
+"""cv.grabCut（）
+"GrabCut": interactive foreground extraction using iterated graph cuts 论文地址：http://dl.acm.org/citation.cfm?id=1015720
+1.用户输入矩形。此矩形外部的所有内容都将用作背景（这是在矩形应包含所有对象之前提到的原因）。矩形内的所有内容都是未知的。
+  同样，任何指定前景和背景的用户输入都被视为硬标签，这意味着它们在此过程中不会更改。
+2.计算机根据我们提供的数据进行初始标记。它标记前景和背景像素（或对其进行硬标记）
+3.现在，使用高斯混合模型（GMM）对前景和背景进行建模。
+4.根据我们提供的数据，GMM可以学习并创建新的像素分布。也就是说，根据颜色统计上未知像素与其他硬标记像素的关系，
+  它们被标记为可能的前景或可能的背景（就像聚类一样）。
+5.根据该像素分布构建图形。图中的节点为像素。添加了另外两个节点，即Source节点和Sink节点。
+  每个前景像素都连接到源节点，每个背景像素都连接到接收器节点。
+6.将像素连接到源节点/末端节点的边缘的权重由像素是前景/背景的概率定义。像素之间的权重由边缘信息或像素相似度定义。
+  如果像素颜色差异很大，则它们之间的边缘将变低。
+7.然后使用mincut算法对图进行分段。它将图切成具有最小成本函数的两个分离的源节点和宿节点。成本函数是被切割边缘的所有权重的总和。
+  剪切后，连接到“源”节点的所有像素都变为前景，而连接到“接收器”节点的像素都变为背景。
+8.继续该过程，直到分类收敛为止。"""
+img = cv.imread("images/messi.png")
+mask = np.zeros(img.shape[:2], np.uint8)
+
+bgdModel = np.zeros((1, 65), np.float64)
+fgdModel = np.zeros((1, 65), np.float64)
+
+rect = (50, 50, 450, 290)
+cv.grabCut(img, mask, rect, bgdModel, fgdModel, 5, cv.GC_INIT_WITH_RECT)
+
+mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
+img = img*mask2[:, :, np.newaxis]
+
+plt.imshow(img), plt.colorbar(), plt.show()
 
