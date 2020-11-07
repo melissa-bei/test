@@ -161,33 +161,53 @@ img = cv.imread("images/coins.jpg")
 img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 # 利用OTSU分割确定前景和背景大概的位置
 ret, thresh = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU)
+plt.imshow(thresh, cmap="gray")
+plt.show()
 coins = cv.bitwise_and(img, img, mask=thresh)
-plt.imshow(coins[:, :, ::-1])
+plt.imshow(coins[:, :, ::-1], cmap="gray")
 plt.show()
 # 利用腐蚀保留确定属于前景的部分，利用膨胀保留确定属于背景的部分，用背景部分减去前景部分可以得到剩下的边界部分
 # 但是不确定分界线在哪里，可以同意通过分水岭算法来找到分界线
 # 移除噪声
 kernel = np.ones((3, 3), np.uint8)
 opening = cv.morphologyEx(thresh, cv.MORPH_OPEN, kernel, iterations=2)
+plt.imshow(opening, cmap="gray")
+plt.show()
 # 膨胀保留确定的背景
-sure_bg = cv.dilate(opening, kernel, iterations=3)
-# 确定的前景 TODO:没看懂，需要查阅distanceTransform函数的意义？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
+sure_bg = cv.dilate(opening, kernel, iterations=3)  # 0标记确定背景
+plt.imshow(sure_bg, cmap="gray")
+plt.show()
+# 确定的前景
+# distanceTransform函数的意义是做距离变换：距离变换的定义是计算一个图像中非零像素点到最近的零像素点的距离，也就是到零像素点的最短距离。
+# 距离变换的处理图像通常都是二值图像，而二值图像其实就是把图像分为两部分，即背景和物体两部分，物体通常又称为前景目标！
+# 通常我们把前景目标的灰度值设为255，即白色，背景的灰度值设为0，即黑色。所以定义中的非零像素点即为前景目标，零像素点即为背景。
+# 所以图像中前景目标中的像素点距离背景越远，那么距离就越大，如果我们用这个距离值替换像素值，那么新生成的图像中这个点越亮。
 dist_transform = cv.distanceTransform(opening, cv.DIST_L2, 5)
-ret, sure_fg = cv.threshold(dist_transform, 0.7*dist_transform.max(), 255, 0)
+plt.imshow(dist_transform, cmap="gray")
+plt.show()
+ret, sure_fg = cv.threshold(dist_transform, 0.7*dist_transform.max(), 255, 0)  # 用来去除不同对象之间重叠的边缘
+# 因为经过距离转换后，重叠部分离背景像素的距离更近，值也就更小，设定一定阈值可以过滤掉
+plt.imshow(sure_fg, cmap="gray")  # 1标记确定前景
+plt.show()
 # 找到不确定区域
 sure_fg = np.uint8(sure_fg)
-unknown = cv.subtract(sure_bg, sure_fg)
-# Marker labelling
-ret, markers = cv.connectedComponents(sure_fg)
-# Add one to all labels so that sure background is not 0, but 1
-markers = markers + 1
-# Now, mark the region of unknown with zero
-markers[unknown == 255] = 0
-plt.imshow(markers, cmap="jet")  # TODO:为什么上面的原始蓝色的，下面的圆是红色的
+unknown = cv.subtract(sure_bg, sure_fg)  # 1标记不确定部分
+plt.imshow(unknown, cmap="gray")
 plt.show()
-markers = cv.watershed(img, markers)
-img[markers == -1] = [255, 0, 0]
-plt.imshow(img)
+# Marker labelling
+ret, markers = cv.connectedComponents(sure_fg)  # 确定前景的连通域分析，给每个连通域都进行编号，从0开始，相当于找到有几个对象
+# Add one to all labels so that sure background is not 0, but 1
+markers = markers + 1  # 给labels都加1，保证背景的编号是1，而不是0
+plt.imshow(markers, cmap="gray")
+plt.show()
+# Now, mark the region of unknown with zero
+markers[unknown == 255] = 0  # 把不确定部分标记为0
+plt.imshow(markers, cmap="gray")
+# 为什么上面的原始蓝色的，下面的圆是红色的？这是因为markers中传入的轮廓会被当作注水点，即分割中的种子点，因此需要不同编号
+plt.show()
+markers = cv.watershed(img, markers)  # 执行分水岭算法
+img[markers == -1] = [255, 0, 0]  # -1标记得到的边缘
+plt.imshow(img, cmap="gray")
 plt.show()
 
 
