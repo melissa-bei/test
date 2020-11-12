@@ -1,0 +1,1566 @@
+{
+"file_info": {
+"file name": "项目1.rvt",
+"file path": "E:\\test\\resource\\unexportedfile"
+},
+"project_info": {
+"类型名称": "",
+"作者": "",
+"族名称": "",
+"类别": "-2003101",
+"项目发布日期": "Issue Date",
+"项目状态": "Project  Status",
+"项目编号": "Project  Number",
+"线路分析设置": "",
+"能量设置": "",
+"客户姓名": "Owner",
+"项目地址": "## Street  City, State  Zip",
+"建筑名称": "",
+"组织名称": "",
+"设计选项": "-1",
+"项目名称": "Project Name",
+"组织描述": ""
+},
+"category_info": {
+"-2000515": {
+"name": "视图标题",
+"category Id": "-2000515",
+"family": "视图标题_family_info"
+},
+"-2006045": {
+"name": "立面标记",
+"category Id": "-2006045",
+"family": "立面标记_family_info"
+},
+"-2008087": {
+"name": "灯具",
+"category Id": "-2008087",
+"family": "灯具_family_info"
+},
+"-2000080": {
+"name": "家具",
+"category Id": "-2000080",
+"family": "家具_family_info"
+},
+"-2000900": {
+"name": "自适应点",
+"category Id": "-2000900",
+"family": "自适应点_family_info"
+},
+"-2000300": {
+"name": "文字注释",
+"category Id": "-2000300",
+"family": "文字注释_family_info"
+},
+"-2005009": {
+"name": "机电设备标记",
+"category Id": "-2005009",
+"family": "机电设备标记_family_info"
+},
+"-2008122": {
+"name": "管道隔热层",
+"category Id": "-2008122",
+"family": "管道隔热层_family_info"
+},
+"-2005014": {
+"name": "专用设备标记",
+"category Id": "-2005014",
+"family": "专用设备标记_family_info"
+},
+"-2009005": {
+"name": "结构区域钢筋符号",
+"category Id": "-2009005",
+"family": "结构区域钢筋符号_family_info"
+},
+"-2008126": {
+"name": "电缆桥架配件",
+"category Id": "-2008126",
+"family": "电缆桥架配件_family_info"
+},
+"-2005007": {
+"name": "家具系统标记",
+"category Id": "-2005007",
+"family": "家具系统标记_family_info"
+},
+"-2001120": {
+"name": "照明设备",
+"category Id": "-2001120",
+"family": "照明设备_family_info"
+},
+"-2009654": {
+"name": "分析独立基础标记",
+"category Id": "-2009654",
+"family": "分析独立基础标记_family_info"
+},
+"-2001060": {
+"name": "电气装置",
+"category Id": "-2001060",
+"family": "电气装置_family_info"
+},
+"-2005028": {
+"name": "详图项目标记",
+"category Id": "-2005028",
+"family": "详图项目标记_family_info"
+},
+"-2009643": {
+"name": "分析基础底板",
+"category Id": "-2009643",
+"family": "分析基础底板_family_info"
+},
+"-2008044": {
+"name": "管道",
+"category Id": "-2008044",
+"family": "管道_family_info"
+},
+"-2000180": {
+"name": "坡道",
+"category Id": "-2000180",
+"family": "坡道_family_info"
+},
+"-2001340": {
+"name": "地形",
+"category Id": "-2001340",
+"family": "地形_family_info"
+},
+"-2001260": {
+"name": "场地",
+"category Id": "-2001260",
+"family": "场地_family_info"
+},
+"-2008099": {
+"name": "喷头",
+"category Id": "-2008099",
+"family": "喷头_family_info"
+},
+"-2000550": {
+"name": "颜色填充图例",
+"category Id": "-2000550",
+"family": "颜色填充图例_family_info"
+},
+"-2000035": {
+"name": "屋顶",
+"category Id": "-2000035",
+"family": "屋顶_family_info"
+},
+"-2000996": {
+"name": "竖井洞口",
+"category Id": "-2000996",
+"family": "竖井洞口_family_info"
+},
+"-2000460": {
+"name": "门标记",
+"category Id": "-2000460",
+"family": "门标记_family_info"
+},
+"-2000450": {
+"name": "窗标记",
+"category Id": "-2000450",
+"family": "窗标记_family_info"
+},
+"-2009055": {
+"name": "板标记",
+"category Id": "-2009055",
+"family": "板标记_family_info"
+},
+"-2005011": {
+"name": "墙标记",
+"category Id": "-2005011",
+"family": "墙标记_family_info"
+},
+"-2009063": {
+"name": "孔标记",
+"category Id": "-2009063",
+"family": "孔标记_family_info"
+},
+"-2008130": {
+"name": "电缆桥架",
+"category Id": "-2008130",
+"family": "电缆桥架_family_info"
+},
+"-2000260": {
+"name": "尺寸标注",
+"category Id": "-2000260",
+"family": "尺寸标注_family_info"
+},
+"-2009040": {
+"name": "结构连接标记",
+"category Id": "-2009040",
+"family": "结构连接标记_family_info"
+},
+"-2009025": {
+"name": "钢筋集切换",
+"category Id": "-2009025",
+"family": "钢筋集切换_family_info"
+},
+"-2009650": {
+"name": "分析支撑标记",
+"category Id": "-2009650",
+"family": "分析支撑标记_family_info"
+},
+"-2009022": {
+"name": "结构钢筋网标记",
+"category Id": "-2009022",
+"family": "结构钢筋网标记_family_info"
+},
+"-2000710": {
+"name": "参照点",
+"category Id": "-2000710",
+"family": "参照点_family_info"
+},
+"-2000083": {
+"name": "参照线",
+"category Id": "-2000083",
+"family": "参照线_family_info"
+},
+"-2005013": {
+"name": "常规模型标记",
+"category Id": "-2005013",
+"family": "常规模型标记_family_info"
+},
+"-2000956": {
+"name": "分析节点标记",
+"category Id": "-2000956",
+"family": "分析节点标记_family_info"
+},
+"-2003200": {
+"name": "面积",
+"category Id": "-2003200",
+"family": "面积_family_info"
+},
+"-2009013": {
+"name": "钢筋形状",
+"category Id": "-2009013",
+"family": "钢筋形状_family_info"
+},
+"-2005022": {
+"name": "多类别标记",
+"category Id": "-2005022",
+"family": "多类别标记_family_info"
+},
+"-2006130": {
+"name": "桥台",
+"category Id": "-2006130",
+"family": "桥台_family_info"
+},
+"-2008213": {
+"name": "MEP 预制保护层标记",
+"category Id": "-2008213",
+"family": "MEP 预制保护层标记_family_info"
+},
+"-2006110": {
+"name": "平面视图中的支撑符号",
+"category Id": "-2006110",
+"family": "平面视图中的支撑符号_family_info"
+},
+"-2000983": {
+"name": "分析管道连接",
+"category Id": "-2000983",
+"family": "分析管道连接_family_info"
+},
+"-2008004": {
+"name": "软风管标记",
+"category Id": "-2008004",
+"family": "软风管标记_family_info"
+},
+"-2009642": {
+"name": "分析条形基础",
+"category Id": "-2009642",
+"family": "分析条形基础_family_info"
+},
+"-2008075": {
+"name": "电话设备",
+"category Id": "-2008075",
+"family": "电话设备_family_info"
+},
+"-2003405": {
+"name": "体量标记",
+"category Id": "-2003405",
+"family": "体量标记_family_info"
+},
+"-2008056": {
+"name": "管道附件标记",
+"category Id": "-2008056",
+"family": "管道附件标记_family_info"
+},
+"-2008043": {
+"name": "管道系统",
+"category Id": "-2008043",
+"family": "管道系统_family_info"
+},
+"-2008020": {
+"name": "软风管",
+"category Id": "-2008020",
+"family": "软风管_family_info"
+},
+"-2000266": {
+"name": "屋顶标记",
+"category Id": "-2000266",
+"family": "屋顶标记_family_info"
+},
+"-2000223": {
+"name": "位移路径",
+"category Id": "-2000223",
+"family": "位移路径_family_info"
+},
+"-2009057": {
+"name": "锚固件标记",
+"category Id": "-2009057",
+"family": "锚固件标记_family_info"
+},
+"-2000987": {
+"name": "机械设备集边界线",
+"category Id": "-2000987",
+"family": "机械设备集边界线_family_info"
+},
+"-2000536": {
+"name": "裁剪边界",
+"category Id": "-2000536",
+"family": "裁剪边界_family_info"
+},
+"-2003600": {
+"name": "空间",
+"category Id": "-2003600",
+"family": "空间_family_info"
+},
+"-2000160": {
+"name": "房间",
+"category Id": "-2000160",
+"family": "房间_family_info"
+},
+"-2008101": {
+"name": "开关系统",
+"category Id": "-2008101",
+"family": "开关系统_family_info"
+},
+"-2008084": {
+"name": "数据设备标记",
+"category Id": "-2008084",
+"family": "数据设备标记_family_info"
+},
+"-2005025": {
+"name": "幕墙系统标记",
+"category Id": "-2005025",
+"family": "幕墙系统标记_family_info"
+},
+"-2008047": {
+"name": "管道标记",
+"category Id": "-2008047",
+"family": "管道标记_family_info"
+},
+"-2005026": {
+"name": "楼板标记",
+"category Id": "-2005026",
+"family": "楼板标记_family_info"
+},
+"-2000501": {
+"name": "相机",
+"category Id": "-2000501",
+"family": "相机_family_info"
+},
+"-2003410": {
+"name": "体量楼层标记",
+"category Id": "-2003410",
+"family": "体量楼层标记_family_info"
+},
+"-2008163": {
+"name": "管段",
+"category Id": "-2008163",
+"family": "管段_family_info"
+},
+"-2005019": {
+"name": "结构基础标记",
+"category Id": "-2005019",
+"family": "结构基础标记_family_info"
+},
+"-2000938": {
+"name": "楼梯路径",
+"category Id": "-2000938",
+"family": "楼梯路径_family_info"
+},
+"-2008076": {
+"name": "电话设备标记",
+"category Id": "-2008076",
+"family": "电话设备标记_family_info"
+},
+"-2008078": {
+"name": "护理呼叫设备标记",
+"category Id": "-2008078",
+"family": "护理呼叫设备标记_family_info"
+},
+"-2009641": {
+"name": "分析独立基础",
+"category Id": "-2009641",
+"family": "分析独立基础_family_info"
+},
+"-2005015": {
+"name": "结构框架标记",
+"category Id": "-2005015",
+"family": "结构框架标记_family_info"
+},
+"-2005030": {
+"name": "结构桁架标记",
+"category Id": "-2005030",
+"family": "结构桁架标记_family_info"
+},
+"-2000197": {
+"name": "视图参照",
+"category Id": "-2000197",
+"family": "视图参照_family_info"
+},
+"-2005017": {
+"name": "停车场标记",
+"category Id": "-2005017",
+"family": "停车场标记_family_info"
+},
+"-2008204": {
+"name": "MEP 预制支架标记",
+"category Id": "-2008204",
+"family": "MEP 预制支架标记_family_info"
+},
+"-2001008": {
+"name": "空调系统",
+"category Id": "-2001008",
+"family": "空调系统_family_info"
+},
+"-2005027": {
+"name": "材质标记",
+"category Id": "-2005027",
+"family": "材质标记_family_info"
+},
+"-2001330": {
+"name": "结构柱",
+"category Id": "-2001330",
+"family": "结构柱_family_info"
+},
+"-2009061": {
+"name": "结构钢筋接头标记",
+"category Id": "-2009061",
+"family": "结构钢筋接头标记_family_info"
+},
+"-2009010": {
+"name": "结构路径钢筋符号",
+"category Id": "-2009010",
+"family": "结构路径钢筋符号_family_info"
+},
+"-2008124": {
+"name": "风管内衬",
+"category Id": "-2008124",
+"family": "风管内衬_family_info"
+},
+"-2000268": {
+"name": "部件标记",
+"category Id": "-2000268",
+"family": "部件标记_family_info"
+},
+"-2000270": {
+"name": "零件标记",
+"category Id": "-2000270",
+"family": "零件标记_family_info"
+},
+"-2008060": {
+"name": "管件标记",
+"category Id": "-2008060",
+"family": "管件标记_family_info"
+},
+"-2008039": {
+"name": "导线",
+"category Id": "-2008039",
+"family": "导线_family_info"
+},
+"-2000279": {
+"name": "视图",
+"category Id": "-2000279",
+"family": "视图_family_info"
+},
+"-2001354": {
+"name": "结构加强板",
+"category Id": "-2001354",
+"family": "结构加强板_family_info"
+},
+"-2008003": {
+"name": "风管标记",
+"category Id": "-2008003",
+"family": "风管标记_family_info"
+},
+"-2008048": {
+"name": "软管标记",
+"category Id": "-2008048",
+"family": "软管标记_family_info"
+},
+"-2008133": {
+"name": "线管标记",
+"category Id": "-2008133",
+"family": "线管标记_family_info"
+},
+"-2008005": {
+"name": "风管颜色填充",
+"category Id": "-2008005",
+"family": "风管颜色填充_family_info"
+},
+"-2001320": {
+"name": "结构框架",
+"category Id": "-2001320",
+"family": "结构框架_family_info"
+},
+"-2001336": {
+"name": "结构桁架",
+"category Id": "-2001336",
+"family": "结构桁架_family_info"
+},
+"-2005018": {
+"name": "结构柱标记",
+"category Id": "-2005018",
+"family": "结构柱标记_family_info"
+},
+"-2005301": {
+"name": "边界条件",
+"category Id": "-2005301",
+"family": "边界条件_family_info"
+},
+"-2008000": {
+"name": "风管",
+"category Id": "-2008000",
+"family": "风管_family_info"
+},
+"-2008050": {
+"name": "软管",
+"category Id": "-2008050",
+"family": "软管_family_info"
+},
+"-2008132": {
+"name": "线管",
+"category Id": "-2008132",
+"family": "线管_family_info"
+},
+"-2009060": {
+"name": "结构钢筋接头",
+"category Id": "-2009060",
+"family": "结构钢筋接头_family_info"
+},
+"-2009011": {
+"name": "结构路径钢筋标记",
+"category Id": "-2009011",
+"family": "结构路径钢筋标记_family_info"
+},
+"-2008151": {
+"name": "配电盘明细表图形",
+"category Id": "-2008151",
+"family": "配电盘明细表图形_family_info"
+},
+"-2001100": {
+"name": "家具系统",
+"category Id": "-2001100",
+"family": "家具系统_family_info"
+},
+"-2006060": {
+"name": "云线批注",
+"category Id": "-2006060",
+"family": "云线批注_family_info"
+},
+"-2008186": {
+"name": "分析表面",
+"category Id": "-2008186",
+"family": "分析表面_family_info"
+},
+"-2008161": {
+"name": "管道占位符",
+"category Id": "-2008161",
+"family": "管道占位符_family_info"
+},
+"-2008017": {
+"name": "风管附件标记",
+"category Id": "-2008017",
+"family": "风管附件标记_family_info"
+},
+"-2008061": {
+"name": "风管管件标记",
+"category Id": "-2008061",
+"family": "风管管件标记_family_info"
+},
+"-2008125": {
+"name": "布管系统配置",
+"category Id": "-2008125",
+"family": "布管系统配置_family_info"
+},
+"-2008129": {
+"name": "线管配件标记",
+"category Id": "-2008129",
+"family": "线管配件标记_family_info"
+},
+"-2006100": {
+"name": "连接符号",
+"category Id": "-2006100",
+"family": "连接符号_family_info"
+},
+"-2001000": {
+"name": "橱柜",
+"category Id": "-2001000",
+"family": "橱柜_family_info"
+},
+"-2009059": {
+"name": "焊接标记",
+"category Id": "-2009059",
+"family": "焊接标记_family_info"
+},
+"-2000196": {
+"name": "在族中导入",
+"category Id": "-2000196",
+"family": "在族中导入_family_info"
+},
+"-2000539": {
+"name": "详图索引边界",
+"category Id": "-2000539",
+"family": "详图索引边界_family_info"
+},
+"-2008150": {
+"name": "电缆桥架管路",
+"category Id": "-2008150",
+"family": "电缆桥架管路_family_info"
+},
+"-2000269": {
+"name": "组成部分",
+"category Id": "-2000269",
+"family": "组成部分_family_info"
+},
+"-2010001": {
+"name": "点云",
+"category Id": "-2010001",
+"family": "点云_family_info"
+},
+"-2000834": {
+"name": "行进路径标记",
+"category Id": "-2000834",
+"family": "行进路径标记_family_info"
+},
+"-2008079": {
+"name": "安全设备",
+"category Id": "-2008079",
+"family": "安全设备_family_info"
+},
+"-2000700": {
+"name": "材质",
+"category Id": "-2000700",
+"family": "材质_family_info"
+},
+"-2008193": {
+"name": "MEP 预制管网",
+"category Id": "-2008193",
+"family": "MEP 预制管网_family_info"
+},
+"-2003100": {
+"name": "图纸",
+"category Id": "-2003100",
+"family": "图纸_family_info"
+},
+"-2000150": {
+"name": "常规注释",
+"category Id": "-2000150",
+"family": "常规注释_family_info"
+},
+"-2000982": {
+"name": "协调模型",
+"category Id": "-2000982",
+"family": "协调模型_family_info"
+},
+"-2009652": {
+"name": "分析楼层标记",
+"category Id": "-2009652",
+"family": "分析楼层标记_family_info"
+},
+"-2009655": {
+"name": "分析条形基础标记",
+"category Id": "-2009655",
+"family": "分析条形基础标记_family_info"
+},
+"-2000350": {
+"name": "等高线标签",
+"category Id": "-2000350",
+"family": "等高线标签_family_info"
+},
+"-2008194": {
+"name": "MEP 预制管网标记",
+"category Id": "-2008194",
+"family": "MEP 预制管网标记_family_info"
+},
+"-2008153": {
+"name": "风管隔热层标记",
+"category Id": "-2008153",
+"family": "风管隔热层标记_family_info"
+},
+"-2005004": {
+"name": "电气装置标记",
+"category Id": "-2005004",
+"family": "电气装置标记_family_info"
+},
+"-2001370": {
+"name": "环境",
+"category Id": "-2001370",
+"family": "环境_family_info"
+},
+"-2000240": {
+"name": "标高",
+"category Id": "-2000240",
+"family": "标高_family_info"
+},
+"-2000220": {
+"name": "轴网",
+"category Id": "-2000220",
+"family": "轴网_family_info"
+},
+"-2005210": {
+"name": "结构荷载工况",
+"category Id": "-2005210",
+"family": "结构荷载工况_family_info"
+},
+"-2009020": {
+"name": "结构钢筋标记",
+"category Id": "-2009020",
+"family": "结构钢筋标记_family_info"
+},
+"-2000570": {
+"name": "明细表图形",
+"category Id": "-2000570",
+"family": "明细表图形_family_info"
+},
+"-2006132": {
+"name": "桥塔",
+"category Id": "-2006132",
+"family": "桥塔_family_info"
+},
+"-2000942": {
+"name": "楼梯支撑标记",
+"category Id": "-2000942",
+"family": "楼梯支撑标记_family_info"
+},
+"-2005016": {
+"name": "场地标记",
+"category Id": "-2005016",
+"family": "场地标记_family_info"
+},
+"-2009009": {
+"name": "结构路径钢筋",
+"category Id": "-2009009",
+"family": "结构路径钢筋_family_info"
+},
+"-2008203": {
+"name": "MEP 预制支架",
+"category Id": "-2008203",
+"family": "MEP 预制支架_family_info"
+},
+"-2001040": {
+"name": "电气设备",
+"category Id": "-2001040",
+"family": "电气设备_family_info"
+},
+"-2008082": {
+"name": "通讯设备标记",
+"category Id": "-2008082",
+"family": "通讯设备标记_family_info"
+},
+"-2008127": {
+"name": "电缆桥架配件标记",
+"category Id": "-2008127",
+"family": "电缆桥架配件标记_family_info"
+},
+"-2008152": {
+"name": "电气备件/空间电路",
+"category Id": "-2008152",
+"family": "电气备件/空间电路_family_info"
+},
+"-2001007": {
+"name": "系统分区标记",
+"category Id": "-2001007",
+"family": "系统分区标记_family_info"
+},
+"-2009058": {
+"name": "剪力钉标记",
+"category Id": "-2009058",
+"family": "剪力钉标记_family_info"
+},
+"-2009000": {
+"name": "结构钢筋",
+"category Id": "-2009000",
+"family": "结构钢筋_family_info"
+},
+"-2009645": {
+"name": "分析节点",
+"category Id": "-2009645",
+"family": "分析节点_family_info"
+},
+"-2009653": {
+"name": "分析墙标记",
+"category Id": "-2009653",
+"family": "分析墙标记_family_info"
+},
+"-2009649": {
+"name": "分析梁标记",
+"category Id": "-2009649",
+"family": "分析梁标记_family_info"
+},
+"-2009651": {
+"name": "分析柱标记",
+"category Id": "-2009651",
+"family": "分析柱标记_family_info"
+},
+"-2001010": {
+"name": "分区设备",
+"category Id": "-2001010",
+"family": "分区设备_family_info"
+},
+"-2009003": {
+"name": "结构区域钢筋",
+"category Id": "-2009003",
+"family": "结构区域钢筋_family_info"
+},
+"-2001352": {
+"name": "RVT 链接",
+"category Id": "-2001352",
+"family": "RVT 链接_family_info"
+},
+"-2006090": {
+"name": "结构注释",
+"category Id": "-2006090",
+"family": "结构注释_family_info"
+},
+"-2009657": {
+"name": "分析链接",
+"category Id": "-2009657",
+"family": "分析链接_family_info"
+},
+"-2005020": {
+"name": "面积标记",
+"category Id": "-2005020",
+"family": "面积标记_family_info"
+},
+"-2000095": {
+"name": "模型组",
+"category Id": "-2000095",
+"family": "模型组_family_info"
+},
+"-2009016": {
+"name": "结构钢筋网",
+"category Id": "-2009016",
+"family": "结构钢筋网_family_info"
+},
+"-2005021": {
+"name": "植物标记",
+"category Id": "-2005021",
+"family": "植物标记_family_info"
+},
+"-2005111": {
+"name": "基础跨方向符号",
+"category Id": "-2005111",
+"family": "基础跨方向符号_family_info"
+},
+"-2009640": {
+"name": "分析墙",
+"category Id": "-2009640",
+"family": "分析墙_family_info"
+},
+"-2009630": {
+"name": "分析梁",
+"category Id": "-2009630",
+"family": "分析梁_family_info"
+},
+"-2009636": {
+"name": "分析柱",
+"category Id": "-2009636",
+"family": "分析柱_family_info"
+},
+"-2001267": {
+"name": "属性标记",
+"category Id": "-2001267",
+"family": "属性标记_family_info"
+},
+"-2001300": {
+"name": "结构基础",
+"category Id": "-2001300",
+"family": "结构基础_family_info"
+},
+"-2000537": {
+"name": "详图索引",
+"category Id": "-2000537",
+"family": "详图索引_family_info"
+},
+"-2005110": {
+"name": "跨方向符号",
+"category Id": "-2005110",
+"family": "跨方向符号_family_info"
+},
+"-2000190": {
+"name": "填充区域",
+"category Id": "-2000190",
+"family": "填充区域_family_info"
+},
+"-2008016": {
+"name": "风管附件",
+"category Id": "-2008016",
+"family": "风管附件_family_info"
+},
+"-2008010": {
+"name": "风管管件",
+"category Id": "-2008010",
+"family": "风管管件_family_info"
+},
+"-2008128": {
+"name": "线管配件",
+"category Id": "-2008128",
+"family": "线管配件_family_info"
+},
+"-2000133": {
+"name": "栏杆扶手标记",
+"category Id": "-2000133",
+"family": "栏杆扶手标记_family_info"
+},
+"-2006134": {
+"name": "桥拱",
+"category Id": "-2006134",
+"family": "桥拱_family_info"
+},
+"-2005023": {
+"name": "楼梯标记",
+"category Id": "-2005023",
+"family": "楼梯标记_family_info"
+},
+"-2001001": {
+"name": "系统分区",
+"category Id": "-2001001",
+"family": "系统分区_family_info"
+},
+"-2000023": {
+"name": "门",
+"category Id": "-2000023",
+"family": "门_family_info"
+},
+"-2000051": {
+"name": "线",
+"category Id": "-2000051",
+"family": "线_family_info"
+},
+"-2000014": {
+"name": "窗",
+"category Id": "-2000014",
+"family": "窗_family_info"
+},
+"-2000100": {
+"name": "柱",
+"category Id": "-2000100",
+"family": "柱_family_info"
+},
+"-2000011": {
+"name": "墙",
+"category Id": "-2000011",
+"family": "墙_family_info"
+},
+"-2000191": {
+"name": "平面区域",
+"category Id": "-2000191",
+"family": "平面区域_family_info"
+},
+"-2002000": {
+"name": "详图项目",
+"category Id": "-2002000",
+"family": "详图项目_family_info"
+},
+"-2000265": {
+"name": "高程点坡度",
+"category Id": "-2000265",
+"family": "高程点坡度_family_info"
+},
+"-2000304": {
+"name": "分析显示样式",
+"category Id": "-2000304",
+"family": "分析显示样式_family_info"
+},
+"-2005100": {
+"name": "高程点符号",
+"category Id": "-2005100",
+"family": "高程点符号_family_info"
+},
+"-2009056": {
+"name": "螺栓标记",
+"category Id": "-2009056",
+"family": "螺栓标记_family_info"
+},
+"-2000193": {
+"name": "拼接线",
+"category Id": "-2000193",
+"family": "拼接线_family_info"
+},
+"-2000173": {
+"name": "幕墙网格",
+"category Id": "-2000173",
+"family": "幕墙网格_family_info"
+},
+"-2009028": {
+"name": "结构钢筋网符号",
+"category Id": "-2009028",
+"family": "结构钢筋网符号_family_info"
+},
+"-2000263": {
+"name": "高程点",
+"category Id": "-2000263",
+"family": "高程点_family_info"
+},
+"-2009015": {
+"name": "钢筋保护层参照",
+"category Id": "-2009015",
+"family": "钢筋保护层参照_family_info"
+},
+"-2006000": {
+"name": "范围框",
+"category Id": "-2006000",
+"family": "范围框_family_info"
+},
+"-2008149": {
+"name": "线管管路",
+"category Id": "-2008149",
+"family": "线管管路_family_info"
+},
+"-2008115": {
+"name": "分区标记",
+"category Id": "-2008115",
+"family": "分区标记_family_info"
+},
+"-2001269": {
+"name": "建筑红线线段标记",
+"category Id": "-2001269",
+"family": "建筑红线线段标记_family_info"
+},
+"-2000510": {
+"name": "视口",
+"category Id": "-2000510",
+"family": "视口_family_info"
+},
+"-2000267": {
+"name": "部件",
+"category Id": "-2000267",
+"family": "部件_family_info"
+},
+"-2008049": {
+"name": "管件",
+"category Id": "-2008049",
+"family": "管件_family_info"
+},
+"-2001327": {
+"name": "结构梁系统",
+"category Id": "-2001327",
+"family": "结构梁系统_family_info"
+},
+"-2006040": {
+"name": "轴网标头",
+"category Id": "-2006040",
+"family": "轴网标头_family_info"
+},
+"-2000120": {
+"name": "楼梯",
+"category Id": "-2000120",
+"family": "楼梯_family_info"
+},
+"-2006080": {
+"name": "云线批注标记",
+"category Id": "-2006080",
+"family": "云线批注标记_family_info"
+},
+"-2008160": {
+"name": "风管占位符",
+"category Id": "-2008160",
+"family": "风管占位符_family_info"
+},
+"-2000485": {
+"name": "空间标记",
+"category Id": "-2000485",
+"family": "空间标记_family_info"
+},
+"-2000480": {
+"name": "房间标记",
+"category Id": "-2000480",
+"family": "房间标记_family_info"
+},
+"-2000107": {
+"name": "导向轴网",
+"category Id": "-2000107",
+"family": "导向轴网_family_info"
+},
+"-2000303": {
+"name": "分析结果",
+"category Id": "-2000303",
+"family": "分析结果_family_info"
+},
+"-2000126": {
+"name": "栏杆扶手",
+"category Id": "-2000126",
+"family": "栏杆扶手_family_info"
+},
+"-2003400": {
+"name": "体量",
+"category Id": "-2003400",
+"family": "体量_family_info"
+},
+"-2000944": {
+"name": "楼梯踏板/踢面数",
+"category Id": "-2000944",
+"family": "楼梯踏板/踢面数_family_info"
+},
+"-2000940": {
+"name": "楼梯梯段标记",
+"category Id": "-2000940",
+"family": "楼梯梯段标记_family_info"
+},
+"-2008088": {
+"name": "灯具标记",
+"category Id": "-2008088",
+"family": "灯具标记_family_info"
+},
+"-2005006": {
+"name": "家具标记",
+"category Id": "-2005006",
+"family": "家具标记_family_info"
+},
+"-2000970": {
+"name": "多钢筋注释",
+"category Id": "-2000970",
+"family": "多钢筋注释_family_info"
+},
+"-2008014": {
+"name": "风道末端标记",
+"category Id": "-2008014",
+"family": "风道末端标记_family_info"
+},
+"-2006133": {
+"name": "桥梁缆索",
+"category Id": "-2006133",
+"family": "桥梁缆索_family_info"
+},
+"-2000032": {
+"name": "楼板",
+"category Id": "-2000032",
+"family": "楼板_family_info"
+},
+"-2000941": {
+"name": "楼梯平台标记",
+"category Id": "-2000941",
+"family": "楼梯平台标记_family_info"
+},
+"-2008013": {
+"name": "风道末端",
+"category Id": "-2008013",
+"family": "风道末端_family_info"
+},
+"-2000547": {
+"name": "注释裁剪边界",
+"category Id": "-2000547",
+"family": "注释裁剪边界_family_info"
+},
+"-2009639": {
+"name": "分析楼层",
+"category Id": "-2009639",
+"family": "分析楼层_family_info"
+},
+"-2000955": {
+"name": "分析链接标记",
+"category Id": "-2000955",
+"family": "分析链接标记_family_info"
+},
+"-2008154": {
+"name": "风管内衬标记",
+"category Id": "-2008154",
+"family": "风管内衬标记_family_info"
+},
+"-2008131": {
+"name": "电缆桥架标记",
+"category Id": "-2008131",
+"family": "电缆桥架标记_family_info"
+},
+"-2008077": {
+"name": "护理呼叫设备",
+"category Id": "-2008077",
+"family": "护理呼叫设备_family_info"
+},
+"-2001140": {
+"name": "机械设备",
+"category Id": "-2001140",
+"family": "机械设备_family_info"
+},
+"-2000264": {
+"name": "高程点坐标",
+"category Id": "-2000264",
+"family": "高程点坐标_family_info"
+},
+"-2008081": {
+"name": "通讯设备",
+"category Id": "-2008081",
+"family": "通讯设备_family_info"
+},
+"-2009030": {
+"name": "结构连接",
+"category Id": "-2009030",
+"family": "结构连接_family_info"
+},
+"-2008055": {
+"name": "管道附件",
+"category Id": "-2008055",
+"family": "管道附件_family_info"
+},
+"-2001180": {
+"name": "停车场",
+"category Id": "-2001180",
+"family": "停车场_family_info"
+},
+"-2006137": {
+"name": "桥梁大梁",
+"category Id": "-2006137",
+"family": "桥梁大梁_family_info"
+},
+"-2009017": {
+"name": "结构钢筋网区域",
+"category Id": "-2009017",
+"family": "结构钢筋网区域_family_info"
+},
+"-2008123": {
+"name": "风管隔热层",
+"category Id": "-2008123",
+"family": "风管隔热层_family_info"
+},
+"-2008083": {
+"name": "数据设备",
+"category Id": "-2008083",
+"family": "数据设备_family_info"
+},
+"-2008058": {
+"name": "管道颜色填充图例",
+"category Id": "-2008058",
+"family": "管道颜色填充图例_family_info"
+},
+"-2008107": {
+"name": "HVAC 区",
+"category Id": "-2008107",
+"family": "HVAC 区_family_info"
+},
+"-2000985": {
+"name": "机械设备集",
+"category Id": "-2000985",
+"family": "机械设备集_family_info"
+},
+"-2008080": {
+"name": "安全设备标记",
+"category Id": "-2008080",
+"family": "安全设备标记_family_info"
+},
+"-2008015": {
+"name": "风管系统",
+"category Id": "-2008015",
+"family": "风管系统_family_info"
+},
+"-2001355": {
+"name": "结构加强板标记",
+"category Id": "-2001355",
+"family": "结构加强板标记_family_info"
+},
+"-2005252": {
+"name": "面荷载标记",
+"category Id": "-2005252",
+"family": "面荷载标记_family_info"
+},
+"-2005003": {
+"name": "电气设备标记",
+"category Id": "-2005003",
+"family": "电气设备标记_family_info"
+},
+"-2005010": {
+"name": "卫浴装置标记",
+"category Id": "-2005010",
+"family": "卫浴装置标记_family_info"
+},
+"-2000280": {
+"name": "图框",
+"category Id": "-2000280",
+"family": "图框_family_info"
+},
+"-2001360": {
+"name": "植物",
+"category Id": "-2001360",
+"family": "植物_family_info"
+},
+"-2005250": {
+"name": "点荷载标记",
+"category Id": "-2005250",
+"family": "点荷载标记_family_info"
+},
+"-2007004": {
+"name": "风管颜色填充图例",
+"category Id": "-2007004",
+"family": "风管颜色填充图例_family_info"
+},
+"-2005251": {
+"name": "线荷载标记",
+"category Id": "-2005251",
+"family": "线荷载标记_family_info"
+},
+"-2003101": {
+"name": "项目信息",
+"category Id": "-2003101",
+"family": "项目信息_family_info"
+},
+"-2009656": {
+"name": "分析楼板基础标记",
+"category Id": "-2009656",
+"family": "分析楼板基础标记_family_info"
+},
+"-2000340": {
+"name": "幕墙系统",
+"category Id": "-2000340",
+"family": "幕墙系统_family_info"
+},
+"-2009633": {
+"name": "分析支撑",
+"category Id": "-2009633",
+"family": "分析支撑_family_info"
+},
+"-2000986": {
+"name": "机械设备集标记",
+"category Id": "-2000986",
+"family": "机械设备集标记_family_info"
+},
+"-2008212": {
+"name": "MEP 预制保护层",
+"category Id": "-2008212",
+"family": "MEP 预制保护层_family_info"
+},
+"-2008208": {
+"name": "MEP 预制管道",
+"category Id": "-2008208",
+"family": "MEP 预制管道_family_info"
+},
+"-2008059": {
+"name": "管道颜色填充",
+"category Id": "-2008059",
+"family": "管道颜色填充_family_info"
+},
+"-2000538": {
+"name": "详图索引标头",
+"category Id": "-2000538",
+"family": "详图索引标头_family_info"
+},
+"-2005204": {
+"name": "结构内部荷载",
+"category Id": "-2005204",
+"family": "结构内部荷载_family_info"
+},
+"-2006020": {
+"name": "标高标头",
+"category Id": "-2006020",
+"family": "标高标头_family_info"
+},
+"-2008100": {
+"name": "喷头标记",
+"category Id": "-2008100",
+"family": "喷头标记_family_info"
+},
+"-2005008": {
+"name": "照明设备标记",
+"category Id": "-2005008",
+"family": "照明设备标记_family_info"
+},
+"-2001160": {
+"name": "卫浴装置",
+"category Id": "-2001160",
+"family": "卫浴装置_family_info"
+},
+"-2005001": {
+"name": "橱柜标记",
+"category Id": "-2005001",
+"family": "橱柜标记_family_info"
+},
+"-2000151": {
+"name": "常规模型",
+"category Id": "-2000151",
+"family": "常规模型_family_info"
+},
+"-2008086": {
+"name": "火警设备标记",
+"category Id": "-2008086",
+"family": "火警设备标记_family_info"
+},
+"-2005254": {
+"name": "内部线荷载标记",
+"category Id": "-2005254",
+"family": "内部线荷载标记_family_info"
+},
+"-2005253": {
+"name": "内部点荷载标记",
+"category Id": "-2005253",
+"family": "内部点荷载标记_family_info"
+},
+"-2001350": {
+"name": "专用设备",
+"category Id": "-2001350",
+"family": "专用设备_family_info"
+},
+"-2008085": {
+"name": "火警设备",
+"category Id": "-2008085",
+"family": "火警设备_family_info"
+},
+"-2000573": {
+"name": "明细表",
+"category Id": "-2000573",
+"family": "明细表_family_info"
+},
+"-2008155": {
+"name": "管道隔热层标记",
+"category Id": "-2008155",
+"family": "管道隔热层标记_family_info"
+},
+"-2000038": {
+"name": "天花板",
+"category Id": "-2000038",
+"family": "天花板_family_info"
+},
+"-2000171": {
+"name": "幕墙竖梃",
+"category Id": "-2000171",
+"family": "幕墙竖梃_family_info"
+},
+"-2006138": {
+"name": "桥梁支座",
+"category Id": "-2006138",
+"family": "桥梁支座_family_info"
+},
+"-2000535": {
+"name": "立面",
+"category Id": "-2000535",
+"family": "立面_family_info"
+},
+"-2006135": {
+"name": "桥面",
+"category Id": "-2006135",
+"family": "桥面_family_info"
+},
+"-2000200": {
+"name": "剖面",
+"category Id": "-2000200",
+"family": "剖面_family_info"
+},
+"-2000301": {
+"name": "剖面框",
+"category Id": "-2000301",
+"family": "剖面框_family_info"
+},
+"-2000201": {
+"name": "剖面线",
+"category Id": "-2000201",
+"family": "剖面线_family_info"
+},
+"-2005255": {
+"name": "内部面荷载标记",
+"category Id": "-2005255",
+"family": "内部面荷载标记_family_info"
+},
+"-2000302": {
+"name": "渲染区域",
+"category Id": "-2000302",
+"family": "渲染区域_family_info"
+},
+"-2000560": {
+"name": "光栅图像",
+"category Id": "-2000560",
+"family": "光栅图像_family_info"
+},
+"-2005029": {
+"name": "注释记号标记",
+"category Id": "-2005029",
+"family": "注释记号标记_family_info"
+},
+"-2005130": {
+"name": "结构梁系统标记",
+"category Id": "-2005130",
+"family": "结构梁系统标记_family_info"
+},
+"-2009064": {
+"name": "轮廓标记",
+"category Id": "-2009064",
+"family": "轮廓标记_family_info"
+},
+"-2000530": {
+"name": "参照平面",
+"category Id": "-2000530",
+"family": "参照平面_family_info"
+},
+"-2000170": {
+"name": "幕墙嵌板",
+"category Id": "-2000170",
+"family": "幕墙嵌板_family_info"
+},
+"-2005012": {
+"name": "幕墙嵌板标记",
+"category Id": "-2005012",
+"family": "幕墙嵌板标记_family_info"
+},
+"-2006131": {
+"name": "桥墩",
+"category Id": "-2006131",
+"family": "桥墩_family_info"
+},
+"-2005200": {
+"name": "结构荷载",
+"category Id": "-2005200",
+"family": "结构荷载_family_info"
+},
+"-2001220": {
+"name": "道路",
+"category Id": "-2001220",
+"family": "道路_family_info"
+},
+"-2008037": {
+"name": "电路",
+"category Id": "-2008037",
+"family": "电路_family_info"
+},
+"-2008185": {
+"name": "分析空间",
+"category Id": "-2008185",
+"family": "分析空间_family_info"
+},
+"-2006136": {
+"name": "桥梁基础",
+"category Id": "-2006136",
+"family": "桥梁基础_family_info"
+},
+"-2001009": {
+"name": "水回路",
+"category Id": "-2001009",
+"family": "水回路_family_info"
+},
+"-2009021": {
+"name": "结构区域钢筋标记",
+"category Id": "-2009021",
+"family": "结构区域钢筋标记_family_info"
+},
+"-2000194": {
+"name": "遮罩区域",
+"category Id": "-2000194",
+"family": "遮罩区域_family_info"
+},
+"-2008209": {
+"name": "MEP 预制管道标记",
+"category Id": "-2008209",
+"family": "MEP 预制管道标记_family_info"
+},
+"-2000400": {
+"name": "剖面标头",
+"category Id": "-2000400",
+"family": "剖面标头_family_info"
+},
+"-2005002": {
+"name": "天花板标记",
+"category Id": "-2005002",
+"family": "天花板标记_family_info"
+},
+"-2008057": {
+"name": "导线标记",
+"category Id": "-2008057",
+"family": "导线标记_family_info"
+}
+}
+}

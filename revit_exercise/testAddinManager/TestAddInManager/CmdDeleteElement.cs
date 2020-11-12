@@ -14,7 +14,7 @@ namespace TestAddinManager
         {
             try
             {
-                List<Element> selectElements = Tools.FilterAllWalls(commandData);
+                List<Element> selectElements = Tools.GetSelectElement(commandData);
                 if (selectElements.Count == 0)
                 {
                     return Result.Cancelled;

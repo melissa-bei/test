@@ -124,7 +124,7 @@ namespace TestAddInManager
                     }
                     json.Append(indentLevel2 + "}" + "\n");
                     //写入Method
-                    json.Append(indentLevel2 + "\"Member\":\t" + "\n");
+                    json.Append(indentLevel2 + "\"Method\":\t" + "\n");
                     json.Append(indentLevel2 + "{" + "\n");
                     foreach (MethodInfo method in element.GetType().GetMethods())
                     {

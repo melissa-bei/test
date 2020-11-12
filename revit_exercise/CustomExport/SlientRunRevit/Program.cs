@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.RevitAddIns;
-using Autodesk.Revit;
 
-namespace SlientRunRevit
+namespace RunRevit
 {
-    class Command
+    class Program
     {
         static void Main(string[] args)
         {
