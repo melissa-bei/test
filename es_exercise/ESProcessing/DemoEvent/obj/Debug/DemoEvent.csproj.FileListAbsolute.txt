@@ -1,0 +1,7 @@
+E:\ES_exercise\ESProcessing\DemoEvent\bin\Debug\DemoEvent.exe.config
+E:\ES_exercise\ESProcessing\DemoEvent\bin\Debug\DemoEvent.exe
+E:\ES_exercise\ESProcessing\DemoEvent\bin\Debug\DemoEvent.pdb
+E:\ES_exercise\ESProcessing\DemoEvent\obj\Debug\DemoEvent.csprojAssemblyReference.cache
+E:\ES_exercise\ESProcessing\DemoEvent\obj\Debug\DemoEvent.csproj.CoreCompileInputs.cache
+E:\ES_exercise\ESProcessing\DemoEvent\obj\Debug\DemoEvent.exe
+E:\ES_exercise\ESProcessing\DemoEvent\obj\Debug\DemoEvent.pdb

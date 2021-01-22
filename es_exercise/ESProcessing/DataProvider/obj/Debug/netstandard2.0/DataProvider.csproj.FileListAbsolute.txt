@@ -1,0 +1,9 @@
+E:\ES_exercise\ESProcessing\DataProvider\bin\Debug\netstandard2.0\DataProvider.deps.json
+E:\ES_exercise\ESProcessing\DataProvider\bin\Debug\netstandard2.0\DataProvider.dll
+E:\ES_exercise\ESProcessing\DataProvider\bin\Debug\netstandard2.0\DataProvider.pdb
+E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.csprojAssemblyReference.cache
+E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.AssemblyInfoInputs.cache
+E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.AssemblyInfo.cs
+E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.csproj.CoreCompileInputs.cache
+E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.dll
+E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.pdb

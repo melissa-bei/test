@@ -1,0 +1,12 @@
+{
+    "type": "jdbc",
+    "jdbc": {
+        "url": "jdbc:oracle:thin:@<server>:1521:HEBTA_PDB",
+        "user": "IMEDSCN",
+        "password": "1med$cnHebt@",
+        "sql":"select concept_id as \"_id\", concept_name from concept",    
+        "schedule" : "0 42 18 ? * *",
+        "index": "concept_index",
+        "type": "url"
+    }
+}
