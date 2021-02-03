@@ -1,21 +1,18 @@
 ﻿using Nest;
 
-namespace ESProcessingParentChildren
+namespace ESProcessingMultiIndex
 {
-    #region Parent/Children
     public class RevitModel
     {
         [Keyword]
         public string Level { get; set; }
         public string FileName { get; set; }
-        public JoinField MyJoinField { get; set; }
     }
 
     public class Project : RevitModel
     {
         public string OwnerProject { get; set; } // => rvt file name
         public string FilePath { get; set; }  // => file path
-        [Keyword]
         public string Elevation { get; set; }
         public GeoLocation Address { get; set; } // location
         [Keyword]
@@ -28,6 +25,7 @@ namespace ESProcessingParentChildren
         public string Status { get; set; } // 阶段
         [Keyword]
         public string PlaceName { get; set; }
+        [Text]
         public string IssueDate { get; set; } // timeStamp
         [Keyword]
         public string BuildingType { get; set; } // 住宅、公建、
@@ -59,5 +57,4 @@ namespace ESProcessingParentChildren
         [Text]
         public string OtherProps { get; set; }
     }
-    #endregion
 }
