@@ -6,21 +6,23 @@ Java 操作 Es 的方案：
 
 1. 直接使用 HTTP 请求
 
-直接使用 HTTP 请求，去操作 Es。HTTP 请求工具，可以使用 Java 自带的 HttpUrlConnection，也可以使用一些 HTTP 请求库，例如 HttpClient、OKHttp、Spring 中的 RestTemplate 都可以。
+   直接使用 HTTP 请求，去操作 Es。HTTP 请求工具，可以使用 Java 自带的 HttpUrlConnection，也可以使用一些 HTTP 请求库，例如 HttpClient、OKHttp、Spring 中的 RestTemplate 都可以。
 
-这种方式有一个弊端，就是要自己组装请求参数，自己去解析响应的 JSON。
+   这种方式有一个弊端，就是要自己组装请求参数，自己去解析响应的 JSON。
 
-1. Low Level REST Client
+2. Low Level REST Client
 
-用于 Es 的官方的低级客户端。这种方式允许通过 HTTP 与 Es 集群进行通信，但是请求时候的 JSON 参数和响应的 JSON 参数交给用户去处理。这种方式好处就是兼容所有的 Es 版本。但是就是数据处理比较麻烦。
+   用于 Es 的官方的低级客户端。这种方式允许通过 HTTP 与 Es 集群进行通信，但是请求时候的 JSON 参数和响应的 JSON 参数交给用户去处理。这种方式好处就是兼容所有的 Es 版本。但是就是数据处理比较麻烦。
 
-1. High Level REST Client
+3. High Level REST Client
 
-用户 Es 的官方的高级客户端。这种方式允许通过 HTTP 与 Es 集群进行通信，它是基于 Low Level REST Client，但是提供了很多 API，开发者不需要自己去组装参数，也不需要自己去解析响应 JSON 。这种方式使用起来更加直接。但是需要注意，这种方式，所使用的依赖库的版本要和 Es 对应。
+   用户 Es 的官方的高级客户端。这种方式允许通过 HTTP 与 Es 集群进行通信，它是基于 Low Level REST Client，但是提供了很多 API，开发者不需要自己去组装参数，也不需要自己去解析响应 JSON 。这种方式使用起来更加直接。但是需要注意，这种方式，所使用的**依赖库的版本要和 Es 对应**。
 
-1. TransportClient
+4. TransportClient
 
-TransportClient 在 Es7 中已经被弃用，在 Es8 中将被完全删除。
+   TransportClient 在 Es7 中已经被弃用，在 Es8 中将被完全删除。
+
+   直接连接的是9300端口，即跨过restful层直接连到transport层。
 
 ## 26.ElasticSearch 普通 HTTP 请求
 
