@@ -11,21 +11,22 @@ namespace ESProcessingMultiIndex
     {
         static void Main(string[] args)
         {
-            const string url = "http://10.80.253.135:9200";
+            const string url = "http://localhost:9200";
             try
             {
-                //string jsonDir = @"C:\Users\lib\Desktop\tmp";
+                string jsonDir = @"C:\Users\lib\Desktop\tmp";
                 //UpdateJsonPath(jsonDir);
+                RemoveDuplicates(jsonDir);
 
 
                 string indexPattern = "test_revit_model_index_";
-                ///Load json file to ES
-                string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
-                LoadToES(jsonDir, url, indexPattern);
+                /////Load json file to ES
+                //string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
+                //LoadToES(jsonDir, url, indexPattern);
 
-                ///Add information
-                string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
-                AddInformation(excelPath, url, indexPattern);
+                /////Add information
+                //string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
+                //AddInformation(excelPath, url, indexPattern);
             }
             catch (Exception ex)
             {
@@ -43,18 +44,16 @@ namespace ESProcessingMultiIndex
             {
                 try
                 {
-                    ///Connecting
-                    ESBase es = new ESBase(url);
-                    es.SetMultiIndexPattern(indexPattern);
+                    ESDataLoader esDataLoader = new ESDataLoader(url);
+                    esDataLoader.SetMultiIndexPattern(indexPattern);
 
                     Console.WriteLine($"Start index file: {file.Name.Substring(0, file.Name.LastIndexOf("."))}");
                     ///Open json files
                     StreamReader reader = new StreamReader(new FileStream(file.FullName, FileMode.Open));
                     string allText = reader.ReadToEnd();
                     ///Indexing
-                    List<RevitModel> docs = es.EsDataProvider(allText);
-                    es.IndexMany(docs);
-                    es.Logging();
+                    List<RevitModel> docs = esDataLoader.EsDataProvider(allText);
+                    esDataLoader.IndexMany(docs);
                 }
                 catch (Exception ex)
                 {
@@ -75,13 +74,11 @@ namespace ESProcessingMultiIndex
             {
                 ///获取当前项目的名字
                 DataRow dataRow = dataTable.Rows[i];
-                var file_name = dataRow.Field<string>("file_name").Split('.')[0];
+                var file_name = dataRow.Field<string>("file_name").Replace(".rvt", "").Replace("_已分离", "");
                 if (string.IsNullOrEmpty(file_name))
                     continue;
 
                 ///搜索当前项目是否在数据库中
-                file_name = file_name.Replace("_已分离", "");
-
                 ///Connecting
                 ESBase es = new ESBase(url);
 
@@ -140,6 +137,10 @@ namespace ESProcessingMultiIndex
             }
         }
 
+        /// <summary>
+        /// 更新项目路径
+        /// </summary>
+        /// <param name="path"></param>
         public static void UpdateJsonPath(string path)
         {
             foreach (FileInfo file in new DirectoryInfo(path).GetFiles("*.json", SearchOption.AllDirectories))
@@ -159,15 +160,67 @@ namespace ESProcessingMultiIndex
                         Console.WriteLine(newPath);
                         proj.project_info.FilePath = System.Text.RegularExpressions.Regex.Escape(newPath);
 
-                        string newName = proj.project_info.FileName.Split('.')[0];
-                        newName = newName.EndsWith("_已分离") ? newName.Remove(newName.Length - 4) : newName;
-                        newName = newName + ".rvt";
+                        string newName = proj.project_info.FileName.Replace("_已分离", "").Replace(".rvt", "");
                         proj.project_info.FileName = newName;
 
                         string jsonStr = JsonConvert.SerializeObject(proj);
                         File.WriteAllText(file.FullName, jsonStr);
                     }
                     catch { }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 移除数据中重复的视图
+        /// </summary>
+        /// <param name="path"></param>
+        public static void RemoveDuplicates(string path)
+        {
+            foreach (FileInfo file in new DirectoryInfo(path).GetFiles("*.json", SearchOption.AllDirectories))
+            {
+                try
+                {
+                    Console.WriteLine($"Start update file: {file.Name.Substring(0, file.Name.LastIndexOf("."))}");
+                    ///Open json files
+                    StreamReader reader = new StreamReader(new FileStream(file.FullName, FileMode.Open));
+                    string allText = reader.ReadToEnd();
+                    reader.Close();
+                    ///解析json
+                    RevitModelJson proj = JsonConvert.DeserializeObject<RevitModelJson>(allText);
+                    
+                    var delType = new List<TypeInfoInJson>();
+                    foreach (var t in proj.type_info)
+                    {
+                        if (t.Name == "三维视图")
+                        {
+                            delType.Add(t);
+                        }
+                    }
+                    foreach (var t in delType)
+                    {
+                        proj.type_info.Remove(t);
+                    }
+
+                    var delElement = new List<ElementInfoInJson>();
+                    foreach (var e in proj.element_info)
+                    {
+                        if (e.TypeName == "三维视图")
+                        {
+                            delElement.Add(e);
+                        }
+                    }
+                    foreach (var e in delElement)
+                    {
+                        proj.element_info.Remove(e);
+                    }
+
+                    string newJson = JsonConvert.SerializeObject(proj);
+                    File.WriteAllText(file.FullName, newJson);
                 }
                 catch (Exception ex)
                 {

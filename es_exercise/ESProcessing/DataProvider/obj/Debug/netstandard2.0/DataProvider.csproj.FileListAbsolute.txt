@@ -7,3 +7,12 @@ E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.A
 E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.csproj.CoreCompileInputs.cache
 E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.dll
 E:\ES_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.pdb
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\bin\Debug\netstandard2.0\DataProvider.deps.json
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\bin\Debug\netstandard2.0\DataProvider.dll
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\bin\Debug\netstandard2.0\DataProvider.pdb
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.csprojAssemblyReference.cache
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.AssemblyInfoInputs.cache
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.AssemblyInfo.cs
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.csproj.CoreCompileInputs.cache
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.dll
+E:\newbie\Exercise\test\es_exercise\ESProcessing\DataProvider\obj\Debug\netstandard2.0\DataProvider.pdb
