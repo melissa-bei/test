@@ -22,6 +22,9 @@ namespace ESProcessingNested
             var pool = new SingleNodeConnectionPool(new Uri(url));
             ConnectionSettings settings = new ConnectionSettings(pool)
                 .DefaultIndex(defaultIndex)
+                .DefaultMappingFor<RevitProject>(m => m.IndexName(defaultIndex))
+                .DefaultMappingFor<ProjectInfo>(m => m.IndexName(defaultIndex))
+                .DefaultMappingFor<ElementInfo>(m => m.IndexName(defaultIndex).RelationName("project"))
                 .DisableDirectStreaming() /// capture the request and/or response
                 .ThrowExceptions() /// throw exceptions when a call results in an exception
                 .OnRequestCompleted(apiCallDetails =>

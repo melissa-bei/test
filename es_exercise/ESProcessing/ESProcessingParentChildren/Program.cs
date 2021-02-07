@@ -23,9 +23,9 @@ namespace ESProcessingParentChildren
                 //string jsonDir = @"C:\Users\lib\Desktop\tmp";
                 //UpdateJsonPath(jsonDir);
 
-                ///Load json file to ES
-                string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
-                LoadToES(jsonDir, indexName);
+                /////Load json file to ES
+                //string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
+                //LoadToES(jsonDir, indexName);
 
                 ///Add information
                 string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
@@ -80,19 +80,15 @@ namespace ESProcessingParentChildren
                     continue;
 
                 ///搜索当前项目是否在数据库中
-                file_name = file_name.EndsWith("_已分离") ? file_name.Remove(file_name.Length - 4) : file_name;
-                file_name = file_name + ".rvt";
+                file_name = file_name.Replace("_已分离", "").Replace(".rvt", "");
 
                 ISearchResponse<Project> response1 = es.client.Search<Project>(m => m
                     .Index(indexName)
                     .Size(1)
-                    .Source(sf => sf
-                        .Includes(o => o.Field(p => p.Id)))
                     .Query(n => n
                         .Bool(o => o
-                            .Filter(f => f.HasChild<Element>(q => q.Query(t => t.MatchAll())))  ///project级别
                             .Must(
-                                p => p.Match(v => v.Field(w => w.FileName).Query(file_name)),  ///项目名相同
+                                p => p.Match(v => v.Field(w => w.FileName).Query(file_name).Operator(Operator.And)),  ///项目名相同
                                 p => p.Match(v => v.Field(w => w.FilePath).Query(dataRow.Field<string>("file_path")).Operator(Operator.And))  ///路径相同
                                 )
                             )
@@ -154,9 +150,7 @@ namespace ESProcessingParentChildren
                         string newPath = file.DirectoryName.Substring(@"C:\Users\lib\Desktop\tmp".Length + 1);
                         proj.project_info.FilePath = System.Text.RegularExpressions.Regex.Escape(newPath);
 
-                        string newName = proj.project_info.FileName.Split('.')[0];
-                        newName = newName.EndsWith("_已分离") ? newName.Remove(newName.Length - 4) : newName;
-                        newName = newName + ".rvt";
+                        string newName = proj.project_info.FileName.Replace("_已分离", "").Replace(".rvt", "");
                         proj.project_info.FileName = newName;
 
                         string jsonStr = JsonConvert.SerializeObject(proj);

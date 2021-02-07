@@ -9,6 +9,9 @@ namespace ESProcessingParentChildren
         public string Level { get; set; }
         public string FileName { get; set; }
         public JoinField MyJoinField { get; set; }
+
+        [Keyword]
+        public string Id { get; set; }
     }
 
     public class Project : RevitModel
@@ -18,8 +21,6 @@ namespace ESProcessingParentChildren
         [Keyword]
         public string Elevation { get; set; }
         public GeoLocation Address { get; set; } // location
-        [Keyword]
-        public Id Id { get; set; } // => id
         [Keyword]
         public string Number { get; set; } // => id
         [Keyword]
@@ -42,8 +43,6 @@ namespace ESProcessingParentChildren
     }
     public class Element : RevitModel
     {
-        [Keyword]
-        public Id Id { get; set; }
         public string Name { get; set; }
         [Keyword]
         public string Category { get; set; }

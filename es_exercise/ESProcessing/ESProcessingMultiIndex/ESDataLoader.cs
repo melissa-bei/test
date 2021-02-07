@@ -2,9 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESProcessingMultiIndex
 {
@@ -13,7 +10,7 @@ namespace ESProcessingMultiIndex
         ESBase es;
         string multiIndexPattern = null;
 
-        public ESDataLoader(string url = "", string defaultIndex = "")
+        public ESDataLoader(string url=null, string defaultIndex=null)
         {
             this.es = new ESBase(url, defaultIndex);
         }
@@ -63,7 +60,7 @@ namespace ESProcessingMultiIndex
                 throw new Exception("The multiIndexPattern is not initialized. Use method multiIndexPattern to set it.");
             }
             CatResponse<CatIndicesRecord> response1 = es.client.Cat.Indices(s => s.Index(this.multiIndexPattern + "*"));
-            string indexName = this.multiIndexPattern + String.Format("{0:D4}", response1.Records.Count + 1);
+            string indexName = this.multiIndexPattern + string.Format("{0:D4}", response1.Records.Count + 1);
             return indexName;
         }
 

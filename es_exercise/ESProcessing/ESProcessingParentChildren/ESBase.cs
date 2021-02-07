@@ -116,7 +116,7 @@ namespace ESProcessingParentChildren
             ///抽取project
             var project = new Project()
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 MyJoinField = JoinField.Root<Project>(),
                 Level = "project",
                 OwnerProject = proj.project_info.Name,
@@ -161,15 +161,16 @@ namespace ESProcessingParentChildren
             if (docs.Count < 2)
                 return;
             Project project = docs[0] as Project;
+            var indexResponse = client.Index<Project>(project, i => i.Index(indexName).Routing(project.Id.ToString()));
 
-            var bulkAllObservable = client.BulkAll(docs, b => b
+            var bulkAllObservable = client.BulkAll(docs.GetRange(1, docs.Count-1), b => b
                   .Index(indexName)
                   .Routing(project.Id.ToString())
                   .BackOffTime("10s")
                   .BackOffRetries(2)
                   .RefreshOnCompleted()
                   .Size(1000))
-                .Wait(TimeSpan.FromMinutes(3), next => { });
+                  .Wait(TimeSpan.FromMinutes(3), next => { });
         }
         #endregion
     }

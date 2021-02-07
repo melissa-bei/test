@@ -11,17 +11,17 @@ namespace ESProcessingNested
         static ESBase es;
         static void Main(string[] args)
         {
-            const string url = "http://localhost:9200";
-            const string indexName = "test_nested_revit_model";
+            const string url = "http://10.80.253.135:9200";
+            const string indexName = "test_nested_revit_model_index";
             try
             {
                 ///Connecting
                 es = new ESBase(url, indexName);
                 es.Create(indexName);
 
-                /////Load json file to ES
-                //string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
-                //LoadToES(jsonDir, indexName);
+                ///Load json file to ES
+                string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
+                LoadToES(jsonDir, indexName);
 
                 ///Add information
                 string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
@@ -76,27 +76,31 @@ namespace ESProcessingNested
             {
                 ///获取当前项目的名字
                 DataRow dataRow = dataTable.Rows[i];
-                var file_name = dataRow.Field<string>("file_name");
+                var file_name = dataRow.Field<string>("file_name").Replace("_已分离", "").Replace(".rvt", "");
                 if (string.IsNullOrEmpty(file_name))
                     continue;
                 ///搜索当前项目是否在数据库中
                 string id = null;
-                var project_name_without_extension = file_name.Substring(0, file_name.LastIndexOf("."));
                 ISearchResponse<RevitProject> response1 = es.client.Search<RevitProject>(m => m
                     .Index(indexName)
                     .Size(1)
                     .Source(sf => sf
-                        .Includes(o => o.Field(p => p._id)))
+                        .Includes(o => o
+                            .Field(p => p._id)
+                            .Field(p => p.ProjectInfo.FileName)
+                            .Field(p => p.ProjectInfo.FilePath)
+                        )
+                    )
                     .Query(n => n
                         .Bool(o => o
-                            .Must(
-                                p => p.Nested(q => q
+                            .Must(p => p
+                                .Nested(q => q
                                     .Path(r => r.ProjectInfo)
                                     .Query(s => s
                                         .Bool(t => t
                                             .Must(
-                                                u => u.MatchPhrasePrefix(v => v.Field(w => w.ProjectInfo.FileName).Query(project_name_without_extension)),  ///项目名相同
-                                                u => u.Match(v => v.Field(w => w.ProjectInfo.FilePath).Query(dataRow.Field<string>("file_path")))  ///路径相同
+                                                u => u.Match(v => v.Field(w => w.ProjectInfo.FileName).Query(file_name).Operator(Operator.And)),  ///项目名相同
+                                                u => u.Match(v => v.Field(w => w.ProjectInfo.FilePath).Query(dataRow.Field<string>("file_path")).Operator(Operator.And))  ///路径相同
                                             )
                                         )
                                     )
@@ -135,7 +139,7 @@ namespace ESProcessingNested
                 var docpath = new DocumentPath<RevitProject>(id).Index(IndexName.From<RevitProject>());
                 IUpdateResponse<RevitProject> response2 = es.client.Update<RevitProject>(docpath, m => m.Doc(newProject).Index(indexName));
                 if (response2.IsValid)
-                    Console.WriteLine($"Successfully update source `{id}` from `{project_name_without_extension}`");
+                    Console.WriteLine($"Successfully update source `{id}` from `{file_name}`");
             }
         }
 
