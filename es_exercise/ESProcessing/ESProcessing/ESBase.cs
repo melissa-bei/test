@@ -66,8 +66,15 @@ namespace ESProcessingNested
             try
             {
                 var response = client.Indices.Create(indexName, c => c
+                    .Settings(s => s
+                        .NumberOfReplicas(nReplicas)
+                        .NumberOfShards(nShards)
+                    )
                     .Map<RevitProject>(m => m
-                        .AutoMap<RevitProject>()));
+                        .AutoMap<RevitProject>()
+                    )
+                    .IncludeTypeName(false)
+                );
             }
             catch { }
         }

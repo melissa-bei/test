@@ -4,6 +4,8 @@ using System.Collections.Generic;
 namespace ESProcessingNested
 {
     #region nested
+
+    [ElasticsearchType(RelationName = "revitmodel")]
     public class RevitProject
     {
         /// <summary>

@@ -11,7 +11,7 @@ namespace ESProcessingNested
         static ESBase es;
         static void Main(string[] args)
         {
-            const string url = "http://10.80.253.135:9200";
+            const string url = "http://localhost:9200";
             const string indexName = "test_nested_revit_model_index";
             try
             {
@@ -19,9 +19,9 @@ namespace ESProcessingNested
                 es = new ESBase(url, indexName);
                 es.Create(indexName);
 
-                ///Load json file to ES
-                string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
-                LoadToES(jsonDir, indexName);
+                /////Load json file to ES
+                //string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
+                //LoadToES(jsonDir, indexName);
 
                 ///Add information
                 string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
@@ -30,6 +30,7 @@ namespace ESProcessingNested
                 /////Aggregations
                 //var h = Search(indexName);
             }
+            
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
