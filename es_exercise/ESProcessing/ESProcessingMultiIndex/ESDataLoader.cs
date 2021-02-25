@@ -100,7 +100,6 @@ namespace ESProcessingMultiIndex
                 var element = new Element()
                 {
                     Level = "element",
-                    FileName = proj.project_info.FileName,
                     Id = elem.Id,
                     Name = elem.Name,
                     Category = elem.Category,
@@ -110,7 +109,17 @@ namespace ESProcessingMultiIndex
                     FamilyType = elem.FamilyType,
                     TypeId = elem.TypeId,
                     TypeName = elem.TypeName,
-                    OtherProps = elem.OtherProperties
+                    OtherProps = elem.OtherProperties,
+
+                    OwnerProject = proj.project_info.Name,
+                    FileName = proj.project_info.FileName,
+                    FilePath = System.Text.RegularExpressions.Regex.Unescape(proj.project_info.FilePath),
+                    Elevation = proj.project_info.Elevation,
+                    Address = new GeoLocation(double.Parse(proj.project_info.Latitude), double.Parse(proj.project_info.Longitude)),
+                    PlaceName = proj.project_info.PlaceName,
+                    TimeZone = proj.project_info.TimeZone,
+                    Status = proj.project_info.Status,
+                    IssueDate = proj.project_info.IssueDate
                 };
                 docs.Add(element);
             }

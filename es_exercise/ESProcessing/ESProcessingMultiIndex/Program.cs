@@ -18,7 +18,6 @@ namespace ESProcessingMultiIndex
                 //UpdateJsonPath(jsonDir);
                 //RemoveDuplicates(jsonDir);
 
-
                 string indexPattern = "test_revit_model_index_";
                 ///Load json file to ES
                 string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
@@ -66,6 +65,8 @@ namespace ESProcessingMultiIndex
         /// 追加项目信息
         /// </summary>
         /// <param name="path"></param>
+        /// <param name="url"></param>
+        /// <param name="indexPattern"></param>
         public static void AddInformation(string path, string url, string indexPattern)
         {
             DataTable dataTable = DataProvider.ExcelDataProvider.Instance.SetPath(path).GetDatas();
@@ -88,8 +89,8 @@ namespace ESProcessingMultiIndex
                     .Sort(s => s.Descending("_score"))
                     .Query(n => n
                         .Bool(o => o
-                            .Filter(f => f.Term(q => q.Level, "project"))  ///project级别
                             .Must(
+                                p => p.Term(q => q.Level, "project"),  ///project级别
                                 p => p.Match(v => v.Field(w => w.FileName).Query(file_name).Operator(Operator.And)),  ///项目名相同
                                 p => p.Match(v => v.Field(w => w.FilePath).Query(dataRow.Field<string>("file_path")).Operator(Operator.And))  ///路径相同
                                 )
@@ -127,9 +128,20 @@ namespace ESProcessingMultiIndex
                     SubNumber = dataRow.Field<string>("sub_number"),
                 };
                 var docpath = new DocumentPath<Project>(id).Index(IndexName.From<Project>());
-
-                IUpdateResponse<Project> response2 = es.client.Update<Project>(docpath, m => m
-                    .Doc(newProject)
+                UpdateByQueryResponse response2 = es.client.UpdateByQuery<Project>(m => m
+                    .MatchAll().Script(s => s.Source(
+                        $"ctx._source.filePath='{dataRow.Field<string>("file_path").Replace("\\", "\\\\")}';" +
+                        $"ctx._source.ownerProject='{dataRow.Field<string>("project_name")}';" +
+                        $"ctx._source.address='{new GeoLocation(double.Parse(dataRow.Field<string>("latitude")), double.Parse(dataRow.Field<string>("longitude")))}';" +
+                        $"ctx._source.number='{dataRow.Field<string>("project_number")}';" +
+                        $"ctx._source.issueDate='{dataRow.Field<string>("project_issue_date")}';" +
+                        $"ctx._source.status='{dataRow.Field<string>("project_phase")}';" +
+                        $"ctx._source.placeName='{dataRow.Field<string>("project_address")}';" +
+                        $"ctx._source.buildingType='{dataRow.Field<string>("building_type")}';" +
+                        $"ctx._source.major='{dataRow.Field<string>("major")}';" +
+                        $"ctx._source.subName='{dataRow.Field<string>("sub_Name")}';" +
+                        $"ctx._source.subNumber='{dataRow.Field<string>("sub_number")}'"
+                        ))
                     .Index(indexName)
                     .Routing(id));
                 if (response2.IsValid)
@@ -227,5 +239,24 @@ namespace ESProcessingMultiIndex
                 }
             }
         }
+
+
+        //public static void Test()
+        //{
+        //    string filePath = @"C:\Users\lib\Desktop\data.json";
+        //    StreamReader file = File.OpenText(filePath);
+        //    JsonTextReader reader = new JsonTextReader(file);
+        //    JObject o = (JObject)JToken.ReadFrom(reader);
+
+        //    List<int> indices = new List<int>();
+        //    foreach (var k in o["aggregations"]["file"]["buckets"])
+        //    {
+        //        var idx = int.Parse(k["key"].ToString().Substring("test_revit_model_index_".Length));
+        //        indices.Add(idx);
+        //    }
+        //    indices.Sort();
+        //    Console.WriteLine(string.Join("\n", indices.ToArray()));
+        //    Console.ReadKey();
+        //}
     }
 }

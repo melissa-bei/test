@@ -38,10 +38,8 @@ namespace ESProcessingMultiIndex
         [Text]
         public string OtherProps { get; set; } // 其他不统一、不重要的字段信息放在一起
     }
-    public class Element : RevitModel
+    public class Element : Project
     {
-        [Keyword]
-        public Id Id { get; set; }
         public string Name { get; set; }
         [Keyword]
         public string Category { get; set; }
@@ -54,7 +52,5 @@ namespace ESProcessingMultiIndex
         [Keyword]
         public string TypeId { get; set; }
         public string TypeName { get; set; }
-        [Text]
-        public string OtherProps { get; set; }
     }
 }
