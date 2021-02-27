@@ -12,7 +12,7 @@ namespace ESProcessingMultiIndex
         public ElasticClient client;
         List<string> logList = new List<string>();
 
-        public ESBase(string url="", string defaultIndex="")
+        public ESBase(string url=null, string defaultIndex=null)
         {
             if (url == null)
                 url = "http://localhost:9200";

@@ -14,19 +14,19 @@ namespace ESProcessingMultiIndex
             const string url = "http://localhost:9200";
             try
             {
-                string jsonDir = @"C:\Users\lib\Desktop\tmp";
+                //string jsonDir = @"C:\Users\lib\Desktop\tmp";
                 //UpdateJsonPath(jsonDir);
-                RemoveDuplicates(jsonDir);
+                //RemoveDuplicates(jsonDir);
 
 
                 string indexPattern = "test_revit_model_index_";
-                /////Load json file to ES
-                //string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
-                //LoadToES(jsonDir, url, indexPattern);
+                ///Load json file to ES
+                string jsonDir = @"E:\cbim_revit_batch\resource\exportedjson";
+                LoadToES(jsonDir, url, indexPattern);
 
-                /////Add information
-                //string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
-                //AddInformation(excelPath, url, indexPattern);
+                ///Add information
+                string excelPath = @"E:\cbim_revit_batch\resource\revit模型项目级信息.xlsx";
+                AddInformation(excelPath, url, indexPattern);
             }
             catch (Exception ex)
             {
@@ -157,7 +157,6 @@ namespace ESProcessingMultiIndex
                     try
                     {
                         string newPath = file.DirectoryName.Substring(@"C:\Users\lib\Desktop\tmp".Length + 1);
-                        Console.WriteLine(newPath);
                         proj.project_info.FilePath = System.Text.RegularExpressions.Regex.Escape(newPath);
 
                         string newName = proj.project_info.FileName.Replace("_已分离", "").Replace(".rvt", "");
