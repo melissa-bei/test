@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace ESProcessingMultiIndex
+namespace ES
 {
     class ESDataLoader
     {
@@ -59,7 +59,7 @@ namespace ESProcessingMultiIndex
             {
                 throw new Exception("The multiIndexPattern is not initialized. Use method multiIndexPattern to set it.");
             }
-            CatResponse<CatIndicesRecord> response1 = es.client.Cat.Indices(s => s.Index(this.multiIndexPattern + "*"));
+            ICatResponse<CatIndicesRecord> response1 = es.client.CatIndices(s => s.Index(this.multiIndexPattern + "*"));
             string indexName = this.multiIndexPattern + string.Format("{0:D4}", response1.Records.Count + 1);
             return indexName;
         }
@@ -79,8 +79,8 @@ namespace ESProcessingMultiIndex
             ///抽取project
             var project = new Project()
             {
-                Id = Guid.NewGuid(),
                 Level = "project",
+                Id = Guid.NewGuid(),
                 OwnerProject = proj.project_info.Name,
                 FileName = proj.project_info.FileName,
                 FilePath = System.Text.RegularExpressions.Regex.Unescape(proj.project_info.FilePath),
@@ -100,16 +100,16 @@ namespace ESProcessingMultiIndex
                 var element = new Element()
                 {
                     Level = "element",
-                    Id = elem.Id,
-                    Name = elem.Name,
-                    Category = elem.Category,
-                    CategoryName = elem.CategoryName,
-                    FamilyId = elem.FamilyId,
-                    FamilyName = elem.FamilyName,
-                    FamilyType = elem.FamilyType,
-                    TypeId = elem.TypeId,
-                    TypeName = elem.TypeName,
-                    OtherProps = elem.OtherProperties,
+                    Id = elem.Value.Id,
+                    Name = elem.Value.Name,
+                    Category = elem.Value.Category,
+                    CategoryName = elem.Value.CategoryName,
+                    FamilyId = elem.Value.FamilyId,
+                    FamilyName = elem.Value.FamilyName,
+                    FamilyType = elem.Value.FamilyType,
+                    TypeId = elem.Value.TypeId,
+                    TypeName = elem.Value.TypeName,
+                    OtherProps = elem.Value.OtherProperties,
 
                     OwnerProject = proj.project_info.Name,
                     FileName = proj.project_info.FileName,

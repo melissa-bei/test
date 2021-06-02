@@ -1,0 +1,45 @@
+﻿<Window x:Class="CBIM.DesignSpecCheck.CheckView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CBIM.DesignSpecCheck"
+        mc:Ignorable="d"
+        Title="参数核查" Height="300" Width="600">
+    <DockPanel Margin="10">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="确定" Width="75" Height="25" Margin="10 0"
+                    Click="Ok_Click"/>
+            <Button Content="取消" Width="75" Height="25" 
+                    Click="Cancel_Click"/>
+        </StackPanel>
+
+        <DockPanel Margin="0 0 0 10">
+            <StackPanel DockPanel.Dock="Top" Margin="0 0 0 10" Orientation="Horizontal">
+                <CheckBox Content="隐藏一致项" VerticalContentAlignment="Center" CommandParameter="HideEqual"
+                          Click="CheckBox_Click"/>
+                <TextBlock Width="20" />
+                <CheckBox Content="隐藏未设置参数值导致的不一致" VerticalContentAlignment="Center"
+                          CommandParameter="HideNullValue"
+                          Click="CheckBox_Click"/>
+            </StackPanel>
+            <DataGrid x:Name="Table" IsReadOnly="True" RowHeight="25" Background="White" BorderBrush="LightGray"
+                      AutoGenerateColumns="False"
+                      SelectedCellsChanged="Table_SelectedCellsChanged"
+                      ItemsSource="{Binding CheckReltList}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="参数名称" 
+                                        Binding="{Binding ParamName}"/>
+                    <DataGridTextColumn Header="设计说明参数值" 
+                                        Binding="{Binding SpecValue}"/>
+                    <DataGridTextColumn Header="实际模型参数值" 
+                                        Binding="{Binding ModelValue}"/>
+                    <DataGridTextColumn Header="模型构件信息" Width="1*"
+                                        Binding="{Binding ModelElemInfo}"/>
+                    <DataGridTextColumn Header="核查结果" 
+                                        Binding="{Binding CheckRelt}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </DockPanel>
+</Window>

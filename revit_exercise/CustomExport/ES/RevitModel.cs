@@ -1,12 +1,12 @@
 ﻿using Nest;
 
-namespace ESProcessingMultiIndex
+namespace ES
 {
     public class RevitModel
     {
+        public string FileName { get; set; }
         [Keyword]
         public string Level { get; set; }
-        public string FileName { get; set; }
     }
 
     public class Project : RevitModel

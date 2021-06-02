@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Less.Revit", "UI.Less.Revit.csproj", "{884462E9-3633-4884-B78B-83739D9849FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{884462E9-3633-4884-B78B-83739D9849FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884462E9-3633-4884-B78B-83739D9849FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884462E9-3633-4884-B78B-83739D9849FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884462E9-3633-4884-B78B-83739D9849FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {119164FE-E4C4-4B2D-B39A-7F8C3DCFC9E0}
+	EndGlobalSection
+EndGlobal

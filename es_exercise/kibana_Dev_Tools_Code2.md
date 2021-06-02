@@ -677,7 +677,7 @@ POST test_revit_model_index/_update/f1e39e85-ce58-4547-bbdb-ef37674b5189?routing
 
 GET /_template/revit_model_template
 
-PUT /_template/revit_model_template
+PUT /_template/revit_model_template?include_type_name=true
 {
   "template": "revit_model_index_*",
   "order": 1,
@@ -685,127 +685,129 @@ PUT /_template/revit_model_template
     "number_of_shards": 1
   },
   "mappings": {
-    "properties": {
-      "address": {
-        "type": "geo_point"
-      },
-      "buildingType": {
-        "type": "keyword"
-      },
-      "category": {
-        "type": "keyword"
-      },
-      "categoryName": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+    "revitmodel": {
+      "properties": {
+        "address": {
+          "type": "geo_point"
+        },
+        "buildingType": {
+          "type": "keyword"
+        },
+        "category": {
+          "type": "keyword"
+        },
+        "categoryName": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "elevation": {
-        "type": "keyword"
-      },
-      "familyId": {
-        "type": "keyword"
-      },
-      "familyName": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "elevation": {
+          "type": "keyword"
+        },
+        "familyId": {
+          "type": "keyword"
+        },
+        "familyName": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "familyType": {
-        "type": "keyword"
-      },
-      "fileName": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "familyType": {
+          "type": "keyword"
+        },
+        "fileName": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "filePath": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "filePath": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "id": {
-        "type": "keyword"
-      },
-      "issueDate": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "id": {
+          "type": "keyword"
+        },
+        "issueDate": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "level": {
-        "type": "keyword"
-      },
-      "major": {
-        "type": "keyword"
-      },
-      "name": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "major": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "number": {
-        "type": "keyword"
-      },
-      "otherProps": {
-        "type": "text"
-      },
-      "ownerProject": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "number": {
+          "type": "keyword"
+        },
+        "otherProps": {
+          "type": "text"
+        },
+        "ownerProject": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
-        }
-      },
-      "placeName": {
-        "type": "keyword"
-      },
-      "status": {
-        "type": "keyword"
-      },
-      "subName": {
-        "type": "keyword"
-      },
-      "subNumber": {
-        "type": "keyword"
-      },
-      "timeZone": {
-        "type": "keyword"
-      },
-      "typeId": {
-        "type": "keyword"
-      },
-      "typeName": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword",
-            "ignore_above": 256
+        },
+        "placeName": {
+          "type": "keyword"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "subName": {
+          "type": "keyword"
+        },
+        "subNumber": {
+          "type": "keyword"
+        },
+        "timeZone": {
+          "type": "keyword"
+        },
+        "typeId": {
+          "type": "keyword"
+        },
+        "typeName": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
           }
         }
       }

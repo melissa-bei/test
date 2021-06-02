@@ -4,16 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0CDC86E-5C7E-474C-993B-09DBF76D94A4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomExport</RootNamespace>
-    <AssemblyName>CustomExport</AssemblyName>
+    <ProjectGuid>{884462E9-3633-4884-B78B-83739D9849FE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UI.Less.Revit</RootNamespace>
+    <AssemblyName>UI.Less.Revit</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,9 +23,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,19 +38,18 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-    </Reference>
-    <Reference Include="RevitDBAPI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitDBAPI.dll</HintPath>
+      <HintPath>..\..\RevitAssembly\2020\RevitAPI.dll</HintPath>
     </Reference>
     <Reference Include="RevitNET">
-      <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitNET.dll</HintPath>
+      <HintPath>..\..\RevitAssembly\2020\RevitNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,19 +59,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManuallyExport.cs" />
-    <Compile Include="MyExportJsonContext.cs" />
-    <Compile Include="Paths.cs" />
+    <Compile Include="CoreContext.cs" />
+    <Compile Include="DocumentExtension.cs" />
+    <Compile Include="LogUtils.cs" />
+    <Compile Include="LogInMesg.cs" />
+    <Compile Include="LogMessage.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="revit_folders.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resource_folders.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\CustomExport\CustomExport.csproj">
+      <Project>{f0cdc86e-5c7e-474c-993b-09dbf76d94a4}</Project>
+      <Name>CustomExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ES\ES.csproj">
+      <Project>{aee404c2-46e1-4b0b-945f-44c8179d2b6d}</Project>
+      <Name>ES</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
