@@ -1,0 +1,30 @@
+syntax = "proto3";
+message Vector {
+    double x = 1;
+    double y = 2;
+}
+message PointEntity {
+    bool is_construction = 1;
+    Vector point = 2;
+}
+message LineEntity {
+    bool is_construction = 1;
+    Vector start = 2;
+    Vector end = 3;
+}
+message CircleArcEntity {
+    bool is_construction = 1;
+    Vector center = 2;
+    message CircleParams {
+        double radius = 1;
+    }
+    message ArcParams {
+        Vector start = 1;
+        Vector end = 2;
+    bool is_clockwise = 3;
+    }
+    oneof additional_params {
+        CircleParams circle_params = 3;
+        ArcParams arc_params = 4;
+    }
+}

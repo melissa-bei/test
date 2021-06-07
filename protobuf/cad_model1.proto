@@ -1,0 +1,47 @@
+syntax = "proto3";
+message Vector {
+    double x = 1;
+    double y = 2;
+}
+message PointEntity {
+    bool is_construction = 1;
+    Vector point = 2;
+}
+message LineEntity {
+    bool is_construction = 1;
+    message Vector {
+        double x = 1;
+        double y = 2;
+    }
+    Vector start = 2;
+    Vector end = 3;
+}
+message MirrorConstraint {
+    PointEntity mirror = 1;
+    message Pair {
+        PointEntity first = 1;
+        PointEntity second = 2;
+       }
+    repeated Pair mirrored_pairs = 2;
+}
+message Sketch {
+    message Entity {
+        oneof kind {
+            LineEntity line = 1;
+            // And other entity types.
+        }
+    }
+    message Constraint {
+        oneof kind {
+            MirrorConstraint mirror = 1;
+            // And other constraint types.
+        }
+    }
+    message Object {
+        oneof kind {
+            Entity entity = 1;
+            Constraint constraint = 2;
+        }
+    }
+    repeated Object objects = 1;
+}
